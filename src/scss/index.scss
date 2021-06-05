@@ -1,0 +1,141 @@
+.x-tabs {
+  $self: &;
+
+  display: flex;
+  flex-direction: column;
+  
+  &--animation {}
+  &--transition {
+    // #{$self}__nav {
+    //   opacity: 0;
+    //   transition-duration: 250ms;
+
+    //   &--active {
+    //     display: block;
+    //   }
+    //   &--show {
+    //     opacity: 1;
+    //   }
+    //   &--hide {
+    //     opacity: 0;
+    //   }
+    // }
+    #{$self}__tab {
+      // opacity: 0;
+      // transition-duration: 750ms;
+
+      // &--active {
+      //   display: block;
+      // }
+      // &--show {
+      //   opacity: 1;
+      // }
+      // &--hide {
+      //   opacity: 0;
+      // }
+    }
+  }
+
+  &__navs {
+    display: flex;
+    height: 50px;
+  }
+  &__tabs {
+    display: flex;
+    height: 300px;
+  }
+  
+  &__nav {
+    flex-grow: 1;
+    text-align: center;
+    padding: 17px 0;
+    background-color: rgba(black, 0.1);
+
+    &--active {
+      background-color: rgba(black, 0.2);
+    }
+  }
+  &__tab {
+    display: none;
+    flex-grow: 1;
+    text-align: center;
+    padding: 140px 0;
+    background-color: rgba(green, 0.1);
+
+    &--active {
+      display: block;
+    }
+
+    // &--show {
+    //   opacity: 1;
+    // }
+    // &--hide {
+    //   opacity: 0;
+    // }
+  }
+}
+
+.x-nav {
+  &--active {
+    background-color: rgba(black, 0.25);
+  }
+  &--t {
+    &-activate {
+      &-from {
+        background-color: rgba(black, 0.1);
+      }
+      &-active {
+        transition-duration: 250ms;
+      }
+      &-to {
+        background-color: rgba(black, 0.25);
+      }
+    }
+    &-deactivate {
+      &-from {
+        background-color: rgba(black, 0.25);
+      }
+      &-active {
+        transition-duration: 250ms;
+      }
+      &-to {
+        background-color: rgba(black, 0.1);
+      }
+    }
+  }
+}
+
+.x-tab {
+  // x-tab--trans-hide-from
+  &--active {
+    display: block;
+  }
+  &--t {
+    &-hide {
+      &-from {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      &-active {
+        transition-duration: 750ms;
+      }
+      &-to {
+        opacity: 0;
+        transform: translateX(50px);
+      }
+    }
+    &-show {
+      &-from {
+        opacity: 0;
+        transform: translateX(-50px);
+      }
+      &-active {
+        transition-duration: 750ms;
+      }
+      &-to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+  }
+}

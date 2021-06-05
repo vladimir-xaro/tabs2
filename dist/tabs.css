@@ -1,0 +1,55 @@
+.x-tabs {
+  display: flex;
+  flex-direction: column; }
+  .x-tabs--transition .x-tabs__nav {
+    opacity: 0;
+    transition-duration: 250ms; }
+    .x-tabs--transition .x-tabs__nav--active {
+      display: block; }
+    .x-tabs--transition .x-tabs__nav--show {
+      opacity: 1; }
+    .x-tabs--transition .x-tabs__nav--hide {
+      opacity: 0; }
+  .x-tabs__navs {
+    display: flex;
+    height: 50px; }
+  .x-tabs__tabs {
+    display: flex;
+    height: 300px; }
+  .x-tabs__nav {
+    flex-grow: 1;
+    text-align: center;
+    padding: 17px 0;
+    background-color: rgba(0, 0, 0, 0.1); }
+    .x-tabs__nav--active {
+      background-color: rgba(0, 0, 0, 0.2); }
+  .x-tabs__tab {
+    display: none;
+    flex-grow: 1;
+    text-align: center;
+    padding: 140px 0;
+    background-color: rgba(0, 128, 0, 0.1); }
+    .x-tabs__tab--active {
+      display: block; }
+
+.x-tab--trans-hide-from {
+  opacity: 1;
+  transform: translateX(0); }
+
+.x-tab--trans-hide-active {
+  transition-duration: 2750ms; }
+
+.x-tab--trans-hide-to {
+  opacity: 0;
+  transform: translateX(50px); }
+
+.x-tab--trans-show-from {
+  opacity: 0;
+  transform: translateX(-50px); }
+
+.x-tab--trans-show-active {
+  transition-duration: 2750ms; }
+
+.x-tab--trans-show-to {
+  opacity: 1;
+  transform: translateX(0); }
