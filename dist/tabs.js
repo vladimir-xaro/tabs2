@@ -1022,20 +1022,21 @@ var Tabs = function() {
             }, this.helper = new class {
                 cb;
             }, this.config.isMutable && this.config.el.classList.add("x-tabs--" + this.config.mutation);
-            const e = E(".x-tabs__tabs").get(".x-tabs__tab");
-            let n;
-            for (let t = 0, r = e.length; t < r; t++) e[t].classList.contains("x-tabs__tab--active") && (n = t);
-            for (let t = 0, r = e.length; t < r; t++) {
-                const r = e[t], i = new F(this, {
-                    el: r,
+            const e = E(".x-tabs__tabs");
+            let n, r = e.get(".x-tabs__tab"), i = E();
+            for (const t of r) t.parentElement === e[0] && i.push(t);
+            for (let t = 0, e = i.length; t < e; t++) i[t].classList.contains("x-tabs__tab--active") && (n = t);
+            for (let t = 0, e = i.length; t < e; t++) {
+                const e = i[t], r = new F(this, {
+                    el: e,
                     index: t,
                     current: t === n,
                     helper: this.helper
                 });
-                this.tabs.push(i);
+                this.tabs.push(r);
             }
-            if (this.config.current = n || 0, q.instances.push(this), t.plugins && Array.isArray(t.plugins)) for (const e of t.plugins) e instanceof L ? this.plugins.push(new e(this)) : (r = e) && "object" == typeof r && null !== r && this.plugins.push(new e.ctor(this, e.config));
-            var r;
+            if (this.config.current = n || 0, q.instances.push(this), t.plugins && Array.isArray(t.plugins)) for (const e of t.plugins) e instanceof L ? this.plugins.push(new e(this)) : (a = e) && "object" == typeof a && null !== a && this.plugins.push(new e.ctor(this, e.config));
+            var a;
             this.emitter.emit("init", this, this.config.current);
         }
         goTo(t) {

@@ -1462,7 +1462,7 @@
   };
   var Tabs = (_a = /** @class */ (function () {
           function class_1(config) {
-              var e_1, _a;
+              var e_1, _a, e_2, _b;
               this.tabs = [];
               this.plugins = [];
               this.emitter = new _default$1(config.on);
@@ -1482,7 +1482,23 @@
                   this.config.el.classList.add('x-tabs--' + this.config.mutation);
               }
               var $tabsWrap = _('.x-tabs__tabs');
-              var $tabs = $tabsWrap.get('.x-tabs__tab');
+              var _$tabs = $tabsWrap.get('.x-tabs__tab');
+              var $tabs = _();
+              try {
+                  for (var _$tabs_1 = __values(_$tabs), _$tabs_1_1 = _$tabs_1.next(); !_$tabs_1_1.done; _$tabs_1_1 = _$tabs_1.next()) {
+                      var el = _$tabs_1_1.value;
+                      if (el.parentElement === $tabsWrap[0]) {
+                          $tabs.push(el);
+                      }
+                  }
+              }
+              catch (e_1_1) { e_1 = { error: e_1_1 }; }
+              finally {
+                  try {
+                      if (_$tabs_1_1 && !_$tabs_1_1.done && (_a = _$tabs_1["return"])) _a.call(_$tabs_1);
+                  }
+                  finally { if (e_1) throw e_1.error; }
+              }
               var currentIndex;
               for (var i = 0, l = $tabs.length; i < l; i++) {
                   if ($tabs[i].classList.contains('x-tabs__tab--active')) {
@@ -1503,8 +1519,8 @@
               Tabs.instances.push(this);
               if (config.plugins && Array.isArray(config.plugins)) {
                   try {
-                      for (var _b = __values(config.plugins), _c = _b.next(); !_c.done; _c = _b.next()) {
-                          var plugin = _c.value;
+                      for (var _c = __values(config.plugins), _d = _c.next(); !_d.done; _d = _c.next()) {
+                          var plugin = _d.value;
                           if (plugin instanceof Plugin) {
                               this.plugins.push(new plugin(this));
                           }
@@ -1513,12 +1529,12 @@
                           }
                       }
                   }
-                  catch (e_1_1) { e_1 = { error: e_1_1 }; }
+                  catch (e_2_1) { e_2 = { error: e_2_1 }; }
                   finally {
                       try {
-                          if (_c && !_c.done && (_a = _b["return"])) _a.call(_b);
+                          if (_d && !_d.done && (_b = _c["return"])) _b.call(_c);
                       }
-                      finally { if (e_1) throw e_1.error; }
+                      finally { if (e_2) throw e_2.error; }
                   }
               }
               this.emitter.emit('init', this, this.config.current);
@@ -1591,17 +1607,17 @@
 
   var NavigationItem = /** @class */ (function () {
       function class_1(plugin, config) {
-          var _this = this;
           this.plugin = plugin;
           this.config = {
               el: config.el,
               index: config.index,
-              pending: false
+              pending: false,
+              current: config.index === this.plugin.tabs.config.current
           };
           console.log(this.config.el);
           // this.click = this.click.bind(this);
           this.config.el.addEventListener('click', function () {
-              _this.click();
+              // this.click();
           });
           this.anim = new _default({
               el: this.config.el,
@@ -1613,8 +1629,6 @@
           this.config.el;
       }
       class_1.prototype.click = function () {
-          this.anim.emitter.once('end', function () {
-          });
           animate({
               animInst: this.anim,
               clsFrom: 'x-nav--t-activate-from',
@@ -1622,6 +1636,16 @@
               clsTo: 'x-nav--t-activate-to'
           });
           this.plugin.tabs.goTo(this.config.index);
+      };
+      class_1.prototype.activate = function () {
+          animate({
+              animInst: this.anim,
+              clsFrom: 'x-nav--t-activate-from',
+              clsActive: 'x-nav--t-activate-active',
+              clsTo: 'x-nav--t-activate-to'
+          });
+      };
+      class_1.prototype.deactivate = function () {
       };
       return class_1;
   }());

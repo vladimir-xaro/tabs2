@@ -90,7 +90,13 @@ const Tabs: I_TabsCtor = class implements I_Tabs {
 
     const $tabsWrap: MicroDOM<HTMLElement> = _<HTMLElement>('.x-tabs__tabs');
 
-    const $tabs = $tabsWrap.get<HTMLElement>('.x-tabs__tab');
+    let _$tabs = $tabsWrap.get<HTMLElement>('.x-tabs__tab');
+    let $tabs = _<HTMLElement>();
+    for (const el of _$tabs) {
+      if (el.parentElement === $tabsWrap[0]) {
+        $tabs.push(el);
+      }
+    }
 
     // get current tab
     let hasCurrent: boolean = false;

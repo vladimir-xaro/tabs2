@@ -12,3 +12,9 @@ body {
   width: 600px;
   margin: 0 auto;
 }
+
+.x-tabs {
+  &__tab {
+    background-color: rgba(green, 0.1);
+  }
+}
