@@ -20,7 +20,7 @@ export class Tabs {
 
   constructor(config: TabsCtorCfg);
 
-  goTo(index: number): boolean;
+  goTo(index: number, config?: TabsGoToCfg): boolean;
   prev(): boolean;
   next(): boolean;
 }
@@ -136,4 +136,8 @@ export interface TabsCfg {
 export interface TabsPluginCfg {
   ctor:     PluginCtor;
   config?:  { [key: string]: any };
+}
+
+export interface TabsGoToCfg {
+  force?: boolean;
 }

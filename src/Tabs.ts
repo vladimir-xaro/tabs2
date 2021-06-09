@@ -4,6 +4,7 @@ import {
   TabsCtorCfg   as I_TabsCtorCfg,
   TabsCfg       as I_TabsCfg,
   TabsPluginCfg as I_TabsPluginCfg,
+  TabsGoToCfg   as I_TabsGoToCfg,
 } from "./types/Tabs";
 import {
   Tab as I_Tab
@@ -137,7 +138,7 @@ const Tabs: I_TabsCtor = class implements I_Tabs {
     this.emitter.emit('init', this, this.config.current);
   }
 
-  goTo(index: number): boolean {
+  goTo(index: number, config?: I_TabsGoToCfg): boolean {
     if (! this.tabs[index]) {
       return false;
     }
@@ -148,6 +149,17 @@ const Tabs: I_TabsCtor = class implements I_Tabs {
 
     this.config.current = index;
 
+    if (config && config.force) {
+      this.config.pendingTab = undefined;
+      this.helper.cb = () => {
+        this.helper.cb = undefined;
+        this.helper.cb = () => this.emitter.emit('afterChange', this, current, index);
+        this.tabs[index].show({ force: true });
+      }
+      this.tabs[current].hide({ force: true });
+      return true;
+    }
+
     if (this.config.isMutable) {
       if (this.config.pendingTab) {
         this.helper.cb = (tab: I_Tab) => {
@@ -156,7 +168,7 @@ const Tabs: I_TabsCtor = class implements I_Tabs {
               this.helper.cb = () => {
                 this.config.pendingTab = undefined;
                 this.helper.cb = undefined;
-                this.emitter.emit('afterChange', this, current, index)
+                this.emitter.emit('afterChange', this, current, index);
               }
               this.tabs[index].show();
             }
@@ -165,7 +177,7 @@ const Tabs: I_TabsCtor = class implements I_Tabs {
             this.helper.cb = () => {
               this.config.pendingTab = undefined;
               this.helper.cb = undefined;
-              this.emitter.emit('afterChange', this, current, index)
+              this.emitter.emit('afterChange', this, current, index);
             }
             this.tabs[index].show();
           }
@@ -176,7 +188,7 @@ const Tabs: I_TabsCtor = class implements I_Tabs {
           this.helper.cb = () => {
             this.config.pendingTab = undefined;
             this.helper.cb = undefined;
-            this.emitter.emit('afterChange', this, current, index)
+            this.emitter.emit('afterChange', this, current, index);
           }
           this.tabs[index].show();
         }

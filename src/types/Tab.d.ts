@@ -20,9 +20,9 @@ export class Tab {
 
   constructor(tabs: Tabs, config: TabCtorCfg);
 
-  change(hide: boolean): void;
-  hide(): void;
-  show(): void;
+  change(hide: boolean, config?: TabChangeCfg): void;
+  hide(config?: TabChangeCfg): void;
+  show(config?: TabChangeCfg): void;
 }
 
 export interface TabCtorCfg {
@@ -37,4 +37,8 @@ export interface TabCfg {
   $el:      MicroDOM<HTMLElement>;
   index:    number;
   current:  boolean;
+}
+
+export interface TabChangeCfg {
+  force?: boolean;
 }

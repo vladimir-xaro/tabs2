@@ -19,7 +19,7 @@ export default class Tabs {
 
   constructor(config: TabsCtorCfg);
 
-  goTo(index: number): boolean;
+  goTo(index: number, config?: TabsGoToCfg): boolean;
   prev(): boolean;
   next(): boolean;
 }
@@ -138,9 +138,9 @@ export class Tab {
 
   constructor(tabs: Tabs, config: TabCtorCfg);
 
-  change(hide: boolean): void;
-  hide(): void;
-  show(): void;
+  change(hide: boolean, config?: TabChangeCfg): void;
+  hide(config?: TabChangeCfg): void;
+  show(config?: TabChangeCfg): void;
 }
 
 export interface TabCtorCfg {
@@ -173,4 +173,12 @@ export class Plugin {
 
 export interface PluginCtorCfg {
   [key: string]: any;
+}
+
+export interface TabsGoToCfg {
+  force?: boolean;
+}
+
+export interface TabChangeCfg {
+  force?: boolean;
 }

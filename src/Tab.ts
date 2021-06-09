@@ -1,8 +1,9 @@
 import {
-  TabCtor     as I_TabCtor,
-  Tab         as I_Tab,
-  TabCtorCfg  as I_TabCtorCfg,
-  TabCfg      as I_TabCfg,
+  TabCtor       as I_TabCtor,
+  Tab           as I_Tab,
+  TabCtorCfg    as I_TabCtorCfg,
+  TabCfg        as I_TabCfg,
+  TabChangeCfg  as I_TabChangeCfg,
 } from "./types/Tab";
 import {
   Tabs as I_Tabs
@@ -49,44 +50,19 @@ const Tab: I_TabCtor = class implements I_Tab {
     }
   }
 
-  // _worked__change(hide: boolean): void {
-  //   const cls = this.tabs.config.classes;
-    
-  //   if (this.tabs.config.isMutable) {
-  //     const mutation = this.tabs.config.mutation as MutationType;
-
-  //     this.pending = true;
-
-  //     if (hide) {
-  //       this.anim!.emitter.once('end', () => {
-  //         this.config.current = false;
-  //         this.config.$el.removeClass(cls.tabs.active, cls.tabs[mutation].show, cls.tabs[mutation].hide);
-  //         this.pending = false;
-  //         this.helper.cb && this.helper.cb(this);
-  //       });
-
-  //       this.config.$el.addClass(cls.tabs[mutation].hide);
-  //     } else {
-  //       this.anim!.emitter.once('end', () => {
-  //         this.config.current = true;
-  //         this.pending = false;
-  //         this.helper.cb && this.helper.cb(this);
-  //       })
-
-  //       this.config.$el.addClass(cls.tabs.active);
-  //       nextTick(() => {
-  //         this.config.$el.addClass(cls.tabs[mutation].show);
-  //       })
-  //     }
-  //   } else {
-  //     this.config.current = !hide;
-  //     this.config.$el[(hide ? 'remove' : 'add') + 'Class'](cls.tabs.active);
-  //     this.helper.cb && this.helper.cb(this);
-  //   }
-  // }
-
-  change(hide: boolean): void {
+  change(hide: boolean, config?: I_TabChangeCfg): void {
     const cls = this.tabs.config.classes;
+
+    if (config && config.force) {
+      this.config.current = !hide;
+      this.config.$el[(hide ? 'remove' : 'add') + 'Class'](cls.tabs.active);
+      this.config.$el.removeClass(
+        'x-tab--t-hide-from','x-tab--t-hide-active', 'x-tab--t-hide-to',
+        'x-tab--t-show-from', 'x-tab--t-show-active', 'x-tab--t-show-to'
+      );
+      this.helper.cb && this.helper.cb(this);
+      return;
+    }
 
     if (this.tabs.config.isMutable) {
       const mutation = this.tabs.config.mutation as MutationType;
@@ -126,12 +102,12 @@ const Tab: I_TabCtor = class implements I_Tab {
     }
   }
 
-  hide(): void {
-    this.change(true);
+  hide(config?: I_TabChangeCfg): void {
+    this.change(true, config);
   }
 
-  show(): void {
-    this.change(false);
+  show(config?: I_TabChangeCfg): void {
+    this.change(false, config);
   }
 }
 

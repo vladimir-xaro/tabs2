@@ -1341,39 +1341,16 @@
               });
           }
       }
-      // _worked__change(hide: boolean): void {
-      //   const cls = this.tabs.config.classes;
-      //   if (this.tabs.config.isMutable) {
-      //     const mutation = this.tabs.config.mutation as MutationType;
-      //     this.pending = true;
-      //     if (hide) {
-      //       this.anim!.emitter.once('end', () => {
-      //         this.config.current = false;
-      //         this.config.$el.removeClass(cls.tabs.active, cls.tabs[mutation].show, cls.tabs[mutation].hide);
-      //         this.pending = false;
-      //         this.helper.cb && this.helper.cb(this);
-      //       });
-      //       this.config.$el.addClass(cls.tabs[mutation].hide);
-      //     } else {
-      //       this.anim!.emitter.once('end', () => {
-      //         this.config.current = true;
-      //         this.pending = false;
-      //         this.helper.cb && this.helper.cb(this);
-      //       })
-      //       this.config.$el.addClass(cls.tabs.active);
-      //       nextTick(() => {
-      //         this.config.$el.addClass(cls.tabs[mutation].show);
-      //       })
-      //     }
-      //   } else {
-      //     this.config.current = !hide;
-      //     this.config.$el[(hide ? 'remove' : 'add') + 'Class'](cls.tabs.active);
-      //     this.helper.cb && this.helper.cb(this);
-      //   }
-      // }
-      class_1.prototype.change = function (hide) {
+      class_1.prototype.change = function (hide, config) {
           var _this = this;
           var cls = this.tabs.config.classes;
+          if (config && config.force) {
+              this.config.current = !hide;
+              this.config.$el[(hide ? 'remove' : 'add') + 'Class'](cls.tabs.active);
+              this.config.$el.removeClass('x-tab--t-hide-from', 'x-tab--t-hide-active', 'x-tab--t-hide-to', 'x-tab--t-show-from', 'x-tab--t-show-active', 'x-tab--t-show-to');
+              this.helper.cb && this.helper.cb(this);
+              return;
+          }
           if (this.tabs.config.isMutable) {
               this.tabs.config.mutation;
               var el_1 = this.config.el;
@@ -1411,11 +1388,11 @@
               this.helper.cb && this.helper.cb(this);
           }
       };
-      class_1.prototype.hide = function () {
-          this.change(true);
+      class_1.prototype.hide = function (config) {
+          this.change(true, config);
       };
-      class_1.prototype.show = function () {
-          this.change(false);
+      class_1.prototype.show = function (config) {
+          this.change(false, config);
       };
       return class_1;
   }());
@@ -1539,7 +1516,7 @@
               }
               this.emitter.emit('init', this, this.config.current);
           }
-          class_1.prototype.goTo = function (index) {
+          class_1.prototype.goTo = function (index, config) {
               var _this = this;
               if (!this.tabs[index]) {
                   return false;
@@ -1547,6 +1524,16 @@
               var current = this.config.current;
               this.emitter.emit('beforeChange', this, current, index);
               this.config.current = index;
+              if (config && config.force) {
+                  this.config.pendingTab = undefined;
+                  this.helper.cb = function () {
+                      _this.helper.cb = undefined;
+                      _this.helper.cb = function () { return _this.emitter.emit('afterChange', _this, current, index); };
+                      _this.tabs[index].show({ force: true });
+                  };
+                  this.tabs[current].hide({ force: true });
+                  return true;
+              }
               if (this.config.isMutable) {
                   if (this.config.pendingTab) {
                       this.helper.cb = function (tab) {
