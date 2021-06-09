@@ -1,7 +1,6 @@
 .DS_Store
 .env
 /dev
-/dist
 /node_modules
 package-lock.json
 README.md
