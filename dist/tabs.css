@@ -1,15 +1,6 @@
 .x-tabs {
   display: flex;
   flex-direction: column; }
-  .x-tabs--transition .x-tabs__nav {
-    opacity: 0;
-    transition-duration: 250ms; }
-    .x-tabs--transition .x-tabs__nav--active {
-      display: block; }
-    .x-tabs--transition .x-tabs__nav--show {
-      opacity: 1; }
-    .x-tabs--transition .x-tabs__nav--hide {
-      opacity: 0; }
   .x-tabs__navs {
     display: flex;
     height: 50px; }
@@ -32,24 +23,48 @@
     .x-tabs__tab--active {
       display: block; }
 
-.x-tab--trans-hide-from {
+.x-nav--active {
+  background-color: rgba(0, 0, 0, 0.25); }
+
+.x-nav--t-activate-from {
+  background-color: rgba(0, 0, 0, 0.1); }
+
+.x-nav--t-activate-active {
+  transition-duration: 250ms; }
+
+.x-nav--t-activate-to {
+  background-color: rgba(0, 0, 0, 0.25); }
+
+.x-nav--t-deactivate-from {
+  background-color: rgba(0, 0, 0, 0.25); }
+
+.x-nav--t-deactivate-active {
+  transition-duration: 250ms; }
+
+.x-nav--t-deactivate-to {
+  background-color: rgba(0, 0, 0, 0.1); }
+
+.x-tab--active {
+  display: block; }
+
+.x-tab--t-hide-from {
   opacity: 1;
   transform: translateX(0); }
 
-.x-tab--trans-hide-active {
-  transition-duration: 2750ms; }
+.x-tab--t-hide-active {
+  transition-duration: 750ms; }
 
-.x-tab--trans-hide-to {
+.x-tab--t-hide-to {
   opacity: 0;
   transform: translateX(50px); }
 
-.x-tab--trans-show-from {
+.x-tab--t-show-from {
   opacity: 0;
   transform: translateX(-50px); }
 
-.x-tab--trans-show-active {
-  transition-duration: 2750ms; }
+.x-tab--t-show-active {
+  transition-duration: 750ms; }
 
-.x-tab--trans-show-to {
+.x-tab--t-show-to {
   opacity: 1;
   transform: translateX(0); }

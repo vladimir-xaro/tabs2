@@ -29,19 +29,19 @@ var Tabs = function() {
                 writable: !0,
                 configurable: !0
             }
-        }), e && s(t, e);
+        }), e && o(t, e);
     }
     function a(t) {
         return (a = Object.setPrototypeOf ? Object.getPrototypeOf : function(t) {
             return t.__proto__ || Object.getPrototypeOf(t);
         })(t);
     }
-    function s(t, e) {
-        return (s = Object.setPrototypeOf || function(t, e) {
+    function o(t, e) {
+        return (o = Object.setPrototypeOf || function(t, e) {
             return t.__proto__ = e, t;
         })(t, e);
     }
-    function o() {
+    function s() {
         if ("undefined" == typeof Reflect || !Reflect.construct) return !1;
         if (Reflect.construct.sham) return !1;
         if ("function" == typeof Proxy) return !0;
@@ -53,11 +53,11 @@ var Tabs = function() {
         }
     }
     function c(t, e, n) {
-        return (c = o() ? Reflect.construct : function(t, e, n) {
+        return (c = s() ? Reflect.construct : function(t, e, n) {
             var r = [ null ];
             r.push.apply(r, e);
             var i = new (Function.bind.apply(t, r));
-            return n && s(i, n.prototype), i;
+            return n && o(i, n.prototype), i;
         }).apply(null, arguments);
     }
     function u(t) {
@@ -80,29 +80,29 @@ var Tabs = function() {
                     writable: !0,
                     configurable: !0
                 }
-            }), s(r, t);
+            }), o(r, t);
         })(t);
     }
-    function h(t, e) {
+    function l(t, e) {
         return !e || "object" != typeof e && "function" != typeof e ? function(t) {
             if (void 0 === t) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
             return t;
         }(t) : e;
     }
-    function l(t) {
-        var e = o();
+    function h(t) {
+        var e = s();
         return function() {
             var n, r = a(t);
             if (e) {
                 var i = a(this).constructor;
                 n = Reflect.construct(r, arguments, i);
             } else n = r.apply(this, arguments);
-            return h(this, n);
+            return l(this, n);
         };
     }
     function f(t) {
         return function(t) {
-            if (Array.isArray(t)) return p(t);
+            if (Array.isArray(t)) return y(t);
         }(t) || function(t) {
             if ("undefined" != typeof Symbol && null != t[Symbol.iterator] || null != t["@@iterator"]) return Array.from(t);
         }(t) || v(t) || function() {
@@ -111,17 +111,17 @@ var Tabs = function() {
     }
     function v(t, e) {
         if (t) {
-            if ("string" == typeof t) return p(t, e);
+            if ("string" == typeof t) return y(t, e);
             var n = Object.prototype.toString.call(t).slice(8, -1);
-            return "Object" === n && t.constructor && (n = t.constructor.name), "Map" === n || "Set" === n ? Array.from(t) : "Arguments" === n || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n) ? p(t, e) : void 0;
+            return "Object" === n && t.constructor && (n = t.constructor.name), "Map" === n || "Set" === n ? Array.from(t) : "Arguments" === n || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n) ? y(t, e) : void 0;
         }
     }
-    function p(t, e) {
+    function y(t, e) {
         (null == e || e > t.length) && (e = t.length);
         for (var n = 0, r = new Array(e); n < e; n++) r[n] = t[n];
         return r;
     }
-    function y(t, e) {
+    function p(t, e) {
         var n = "undefined" != typeof Symbol && t[Symbol.iterator] || t["@@iterator"];
         if (!n) {
             if (Array.isArray(t) || (n = v(t)) || e && t && "number" == typeof t.length) {
@@ -145,23 +145,23 @@ var Tabs = function() {
             }
             throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
         }
-        var a, s = !0, o = !1;
+        var a, o = !0, s = !1;
         return {
             s: function() {
                 n = n.call(t);
             },
             n: function() {
                 var t = n.next();
-                return s = t.done, t;
+                return o = t.done, t;
             },
             e: function(t) {
-                o = !0, a = t;
+                s = !0, a = t;
             },
             f: function() {
                 try {
-                    s || null == n.return || n.return();
+                    o || null == n.return || n.return();
                 } finally {
-                    if (o) throw a;
+                    if (s) throw a;
                 }
             }
         };
@@ -186,11 +186,11 @@ var Tabs = function() {
                 this.has(t) || (this.events[t] = []);
                 var r = [];
                 if (Array.isArray(e)) {
-                    var i, a = y(e);
+                    var i, a = p(e);
                     try {
                         for (a.s(); !(i = a.n()).done; ) {
-                            var s = i.value;
-                            r.push.apply(r, f(this.subscribe(t, s)));
+                            var o = i.value;
+                            r.push.apply(r, f(this.subscribe(t, o)));
                         }
                     } catch (t) {
                         a.e(t);
@@ -259,16 +259,16 @@ var Tabs = function() {
             value: function(t) {
                 for (var e = this.events[t], n = arguments.length, r = new Array(n > 1 ? n - 1 : 0), i = 1; i < n; i++) r[i - 1] = arguments[i];
                 if (e) {
-                    var a, s = y(e);
+                    var a, o = p(e);
                     try {
-                        for (s.s(); !(a = s.n()).done; ) {
-                            var o = a.value;
-                            o.apply(void 0, r);
+                        for (o.s(); !(a = o.n()).done; ) {
+                            var s = a.value;
+                            s.apply(void 0, r);
                         }
                     } catch (t) {
-                        s.e(t);
+                        o.e(t);
                     } finally {
-                        s.f();
+                        o.f();
                     }
                 }
             }
@@ -283,16 +283,16 @@ var Tabs = function() {
                 var e = this.events[t];
                 if (!e) return !1;
                 for (var n = arguments.length, r = new Array(n > 1 ? n - 1 : 0), i = 1; i < n; i++) r[i - 1] = arguments[i];
-                var a, s = y(e);
+                var a, o = p(e);
                 try {
-                    for (s.s(); !(a = s.n()).done; ) {
-                        var o = a.value;
-                        if (!o.apply(void 0, r)) return !1;
+                    for (o.s(); !(a = o.n()).done; ) {
+                        var s = a.value;
+                        if (!s.apply(void 0, r)) return !1;
                     }
                 } catch (t) {
-                    s.e(t);
+                    o.e(t);
                 } finally {
-                    s.f();
+                    o.f();
                 }
                 return !0;
             }
@@ -306,7 +306,7 @@ var Tabs = function() {
                 var e = this.events[t];
                 if (e) {
                     for (var n, r = arguments.length, i = new Array(r > 1 ? r - 1 : 0), a = 1; a < r; a++) i[a - 1] = arguments[a];
-                    for (var s = 0; s < e.length; s++) n = 0 === s ? e[s].apply(e, i) : e[s](n);
+                    for (var o = 0; o < e.length; o++) n = 0 === o ? e[o].apply(e, i) : e[o](n);
                     return n;
                 }
             }
@@ -314,20 +314,20 @@ var Tabs = function() {
     }();
     function b(t) {
         for (var e = [], n = arguments.length, r = new Array(n > 1 ? n - 1 : 0), i = 1; i < n; i++) r[i - 1] = arguments[i];
-        for (var a = 0, s = r; a < s.length; a++) {
-            var o = s[a];
-            if ("string" == typeof o) {
-                var c = t.querySelectorAll(o);
+        for (var a = 0, o = r; a < o.length; a++) {
+            var s = o[a];
+            if ("string" == typeof s) {
+                var c = t.querySelectorAll(s);
                 e.push.apply(e, f(c));
-            } else o instanceof Element && e.push(o);
+            } else s instanceof Element && e.push(s);
         }
         return e;
     }
     function g(t) {
         for (var e = arguments.length, n = new Array(e > 1 ? e - 1 : 0), r = 1; r < e; r++) n[r - 1] = arguments[r];
         for (var i = 0, a = n; i < a.length; i++) {
-            var s = a[i];
-            Array.isArray(s) ? g.apply(void 0, [ t ].concat(f(s))) : t.append(s);
+            var o = a[i];
+            Array.isArray(o) ? g.apply(void 0, [ t ].concat(f(o))) : t.append(o);
         }
     }
     function m(t, e) {
@@ -344,7 +344,7 @@ var Tabs = function() {
     }
     var A =  function(e) {
         i(a, e);
-        var r = l(a);
+        var r = h(a);
         function a() {
             t(this, a);
             for (var e = arguments.length, n = new Array(e), i = 0; i < e; i++) n[i] = arguments[i];
@@ -357,16 +357,16 @@ var Tabs = function() {
             value: function() {
                 for (var t = new a, e = arguments.length, n = new Array(e), r = 0; r < e; r++) n[r] = arguments[r];
                 if (this.length) {
-                    var i, s = y(this);
+                    var i, o = p(this);
                     try {
-                        for (s.s(); !(i = s.n()).done; ) {
-                            var o = i.value;
-                            t.push.apply(t, f(b.apply(void 0, [ o ].concat(n))));
+                        for (o.s(); !(i = o.n()).done; ) {
+                            var s = i.value;
+                            t.push.apply(t, f(b.apply(void 0, [ s ].concat(n))));
                         }
                     } catch (t) {
-                        s.e(t);
+                        o.e(t);
                     } finally {
-                        s.f();
+                        o.f();
                     }
                 } else t.push.apply(t, f(b.apply(void 0, [ document ].concat(n))));
                 return t;
@@ -377,11 +377,11 @@ var Tabs = function() {
             key: "create",
             value: function() {
                 for (var t = new a, e = arguments.length, n = new Array(e), r = 0; r < e; r++) n[r] = arguments[r];
-                for (var i = 0, s = n; i < s.length; i++) {
-                    var o = s[i];
-                    if ("string" == typeof o) t.push(document.createElement(o)); else if (o instanceof Object) {
-                        var c = document.createElement(o.tagName || "div");
-                        o.content && (Array.isArray(o.content) ? g.apply(void 0, [ c ].concat(f(o.content))) : g(c, o.content)), 
+                for (var i = 0, o = n; i < o.length; i++) {
+                    var s = o[i];
+                    if ("string" == typeof s) t.push(document.createElement(s)); else if (s instanceof Object) {
+                        var c = document.createElement(s.tagName || "div");
+                        s.content && (Array.isArray(s.content) ? g.apply(void 0, [ c ].concat(f(s.content))) : g(c, s.content)), 
                         t.push(c);
                     }
                 }
@@ -463,11 +463,11 @@ var Tabs = function() {
                     e.classList.contains(t) && n.push(e);
                 })), n;
  // the presence of a class for at least one element of the set
-                                var r, i = y(this);
+                                var r, i = p(this);
                 try {
                     for (i.s(); !(r = i.n()).done; ) {
-                        var s = r.value;
-                        s.classList.contains(t) && n.push(s);
+                        var o = r.value;
+                        o.classList.contains(t) && n.push(o);
                     }
                 } catch (t) {
                     i.e(t);
@@ -543,23 +543,33 @@ var Tabs = function() {
         for (var t = arguments.length, e = new Array(t), n = 0; n < t; n++) e[n] = arguments[n];
         return e instanceof A ? e : c(A, f(b.apply(void 0, [ document ].concat(e))));
     }
-    function _(t) {
+    function k(t) {
         return "object" == typeof t && !Array.isArray(t) && null !== t;
     }
-    function k(t, e) {
+    function _(t, e) {
         var n = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : {}, r = void 0 === n.mergeObject || !!n.mergeObject;
-        if (_(t) && _(e)) for (var i = 0, a = Object.keys(e); i < a.length; i++) {
-            var s = a[i];
-            if (r && _(e[s])) t[s] && _(t[s]) || (t[s] = e[s]), k(t[s], e[s]); else if (n.mergeArray && Array.isArray(e[s])) {
-                var o;
-                if (console.log(s), Array.isArray(t[s])) (o = t[s]).push.apply(o, f(e[s])); else Object.assign(t, {
-                    [s]: e[s]
+        if (k(t) && k(e)) for (var i = 0, a = Object.keys(e); i < a.length; i++) {
+            var o = a[i];
+            if (r && k(e[o])) t[o] && k(t[o]) || (t[o] = e[o]), _(t[o], e[o]); else if (n.mergeArray && Array.isArray(e[o])) {
+                var s;
+                if (console.log(o), Array.isArray(t[o])) (s = t[o]).push.apply(s, f(e[o])); else Object.assign(t, {
+                    [o]: e[o]
                 });
             } else Object.assign(t, {
-                [s]: e[s]
+                [o]: e[o]
             });
         }
         return t;
+    }
+    function x({animInst: t, clsFrom: // CSSClassAnimations
+    e, clsActive: // string
+    n, clsTo: // string
+    r}, i) {
+        t.els.addClass(e), w([ () => t.els.addClass(n), 10 ], [ () => t.els.removeClass(e), 10 ], [ () => {
+            t.emitter.once("end", (() => {
+                t.els.removeClass(r, n), i && i();
+            })), t.els.addClass(r);
+        }, 10 ]);
     }
     const L = class {
         tabs;
@@ -567,64 +577,34 @@ var Tabs = function() {
             this.tabs = t;
         }
     };
-    // export const test = (tab: I_Tab, hide: boolean) => {
-    //   const cls = tab.tabs.config.classes;
-    //   if (tab.tabs.config.isMutable) {
-    //     const mutation = tab.tabs.config.mutation as MutationType;
-    //     tab.pending = true;
-    //     if (hide) {
-    //       tab.anim!.emitter.once('end', () => {
-    //         tab.config.current = false;
-    //         tab.config.$el.removeClass(cls.tabs.active, cls[mutation].show, cls[mutation].hide);
-    //         tab.pending = false;
-    //         tab.helper.cb && tab.helper.cb(tab);
-    //       });
-    //       tab.config.$el.addClass(cls[mutation].hide);
-    //     } else {
-    //       tab.anim!.emitter.once('end', () => {
-    //         tab.config.current = true;
-    //         tab.pending = false;
-    //         tab.helper.cb && tab.helper.cb(tab);
-    //       })
-    //       tab.config.$el.addClass(cls.tabs.active);
-    //       nextTick(() => {
-    //         tab.config.$el.addClass(cls[mutation].show);
-    //       })
-    //     }
-    //   } else {
-    //     tab.config.current = !hide;
-    //     tab.config.$el[(hide ? 'remove' : 'add') + 'Class'](cls.tabs.active);
-    //     tab.helper.cb && tab.helper.cb(tab);
-    //   }
-    // }
-        function x(t) {
+    function O(t) {
         for (var e = [], n = arguments.length, r = new Array(n > 1 ? n - 1 : 0), i = 1; i < n; i++) r[i - 1] = arguments[i];
-        for (var a = 0, s = r; a < s.length; a++) {
-            var o = s[a];
-            if ("string" == typeof o) {
-                var c = t.querySelectorAll(o);
+        for (var a = 0, o = r; a < o.length; a++) {
+            var s = o[a];
+            if ("string" == typeof s) {
+                var c = t.querySelectorAll(s);
                 e.push.apply(e, f(c));
-            } else o instanceof Element && e.push(o);
+            } else s instanceof Element && e.push(s);
         }
         return e;
     }
-    function O(t) {
+    function C(t) {
         for (var e = arguments.length, n = new Array(e > 1 ? e - 1 : 0), r = 1; r < e; r++) n[r - 1] = arguments[r];
         for (var i = 0, a = n; i < a.length; i++) {
-            var s = a[i];
-            Array.isArray(s) ? O.apply(void 0, [ t ].concat(f(s))) : t.append(s);
+            var o = a[i];
+            Array.isArray(o) ? C.apply(void 0, [ t ].concat(f(o))) : t.append(o);
         }
     }
-    function C() {
+    function j() {
         for (var t = arguments.length, e = new Array(t), n = 0; n < t; n++) e[n] = arguments[n];
         var r = e, i = e.shift();
         return i && setTimeout((function() {
-            i(), r.length && C.apply(void 0, r);
+            i(), r.length && j.apply(void 0, r);
         }), 0), this;
     }
-    var j =  function(e) {
+    var T =  function(e) {
         i(a, e);
-        var r = l(a);
+        var r = h(a);
         function a() {
             t(this, a);
             for (var e = arguments.length, n = new Array(e), i = 0; i < e; i++) n[i] = arguments[i];
@@ -637,18 +617,18 @@ var Tabs = function() {
             value: function() {
                 for (var t = new a, e = arguments.length, n = new Array(e), r = 0; r < e; r++) n[r] = arguments[r];
                 if (this.length) {
-                    var i, s = y(this);
+                    var i, o = p(this);
                     try {
-                        for (s.s(); !(i = s.n()).done; ) {
-                            var o = i.value;
-                            t.push.apply(t, f(x.apply(void 0, [ o ].concat(n))));
+                        for (o.s(); !(i = o.n()).done; ) {
+                            var s = i.value;
+                            t.push.apply(t, f(O.apply(void 0, [ s ].concat(n))));
                         }
                     } catch (t) {
-                        s.e(t);
+                        o.e(t);
                     } finally {
-                        s.f();
+                        o.f();
                     }
-                } else t.push.apply(t, f(x.apply(void 0, [ document ].concat(n))));
+                } else t.push.apply(t, f(O.apply(void 0, [ document ].concat(n))));
                 return t;
             }
             /**
@@ -657,11 +637,11 @@ var Tabs = function() {
             key: "create",
             value: function() {
                 for (var t = new a, e = arguments.length, n = new Array(e), r = 0; r < e; r++) n[r] = arguments[r];
-                for (var i = 0, s = n; i < s.length; i++) {
-                    var o = s[i];
-                    if ("string" == typeof o) t.push(document.createElement(o)); else if (o instanceof Object) {
-                        var c = document.createElement(o.tagName || "div");
-                        o.content && (Array.isArray(o.content) ? O.apply(void 0, [ c ].concat(f(o.content))) : O(c, o.content)), 
+                for (var i = 0, o = n; i < o.length; i++) {
+                    var s = o[i];
+                    if ("string" == typeof s) t.push(document.createElement(s)); else if (s instanceof Object) {
+                        var c = document.createElement(s.tagName || "div");
+                        s.content && (Array.isArray(s.content) ? C.apply(void 0, [ c ].concat(f(s.content))) : C(c, s.content)), 
                         t.push(c);
                     }
                 }
@@ -694,7 +674,7 @@ var Tabs = function() {
             value: function() {
                 for (var t = arguments.length, e = new Array(t), n = 0; n < t; n++) e[n] = arguments[n];
                 return this.forEach((function(t) {
-                    return O.apply(void 0, [ t ].concat(e));
+                    return C.apply(void 0, [ t ].concat(e));
                 })), this
                 /**
        * Adds a class or classes to all array elements
@@ -746,7 +726,7 @@ var Tabs = function() {
                     })), n === this.length;
                 }
  // the presence of a class for at least one element of the set
-                                var r, i = y(this);
+                                var r, i = p(this);
                 try {
                     for (i.s(); !(r = i.n()).done; ) {
                         var a = r.value;
@@ -818,15 +798,15 @@ var Tabs = function() {
         }, {
             key: "nextTick",
             value: function() {
-                return C.apply(void 0, arguments), this;
+                return j.apply(void 0, arguments), this;
             }
         } ]), a;
     }( u(Array));
-    function T() {
+    function S() {
         for (var t = arguments.length, e = new Array(t), n = 0; n < t; n++) e[n] = arguments[n];
-        return e instanceof j ? e : c(j, f(x.apply(void 0, [ document ].concat(e))));
+        return e instanceof T ? e : c(T, f(O.apply(void 0, [ document ].concat(e))));
     }
-    var S = {
+    var I = {
         animationstart: "__mutationStartListener",
         animationcancel: "__mutationCancelListener",
         animationend: "__mutationEndListener",
@@ -835,15 +815,15 @@ var Tabs = function() {
         transitioncancel: "__mutationCancelListener",
         transitionend: "__mutationEndListener",
         transitionrun: "__mutationRunListener"
-    }, M = Object.keys(S), R =  function() {
+    }, M = Object.keys(I), R =  function() {
         function e(n) {
             var i = this;
             t(this, e), r(this, "els", void 0), r(this, "emitter", void 0), r(this, "allow", void 0), 
-            r(this, "pending", !1), this.emitter = new d(n.on), this.els = Array.isArray(n.el) ? T.apply(void 0, f(n.el)) : T(n.el);
-            var a = n.allow, s = n.disallow;
+            r(this, "pending", !1), this.emitter = new d(n.on), this.els = Array.isArray(n.el) ? S.apply(void 0, f(n.el)) : S(n.el);
+            var a = n.allow, o = n.disallow;
             a && a.length > 0 ? this.allow = (Array.isArray(a) ? a : [ a ]).filter((function(t) {
                 return M.includes(t.toLowerCase());
-            })) : s && s.length > 0 ? this.allow = (Array.isArray(s) ? s : [ s ]).filter((function(t) {
+            })) : o && o.length > 0 ? this.allow = (Array.isArray(o) ? o : [ o ]).filter((function(t) {
                 return M.includes(t.toLowerCase());
             })) : this.allow = M, // if (config.allow) {
             //   this.allow = (Array.isArray(config.allow) ? config.allow : [ config.allow ]).filter(value => events.includes(value));
@@ -852,11 +832,11 @@ var Tabs = function() {
             // } else {
             //   this.allow = events;
             // }
-            Object.keys(S).forEach((function(t) {
-                return i[S[t]] = i[S[t]].bind(i);
+            Object.keys(I).forEach((function(t) {
+                return i[I[t]] = i[I[t]].bind(i);
             })), this.els.forEach((function(t) {
                 return i.allow.forEach((function(e) {
-                    return t.addEventListener(e, i[S[e]]);
+                    return t.addEventListener(e, i[I[e]]);
                 }));
             }));
         }
@@ -890,7 +870,7 @@ var Tabs = function() {
             value: function(t) {
                 var e = this;
                 M.includes(t) && (this.allow.push(t), this.els.forEach((function(n) {
-                    return n.addEventListener(t, e[S[t]]);
+                    return n.addEventListener(t, e[I[t]]);
                 })));
             }
         }, {
@@ -899,7 +879,7 @@ var Tabs = function() {
                 var e = this;
                 M.includes(t) && this.allow.includes(t) && (this.allow.splice(this.allow.indexOf(t)), 
                 this.els.forEach((function(n) {
-                    return n.removeEventListener(t, e[S[t]]);
+                    return n.removeEventListener(t, e[I[t]]);
                 })));
             }
         }, {
@@ -909,10 +889,10 @@ var Tabs = function() {
             }
         } ]), e;
     }();
-    const $ = {
+    const P = {
         animation: [ "start", "cancel", "end", "iteration" ],
         transition: [ "start", "cancel", "end", "run" ]
-    }, P = class {
+    }, F = class {
         tabs;
         config;
         pending=!1;
@@ -928,39 +908,59 @@ var Tabs = function() {
             const n = this.tabs.config.mutation;
             n && (this.anim = new R({
                 el: this.config.el,
-                allow: $[n].map((t => n + t))
+                allow: P[n].map((t => n + t))
             }));
         }
-        _worked__change(t) {
-            const e = this.tabs.config.classes;
-            if (this.tabs.config.isMutable) {
-                const n = this.tabs.config.mutation;
-                this.pending = !0, t ? (this.anim.emitter.once("end", (() => {
-                    this.config.current = !1, this.config.$el.removeClass(e.tabs.active, e.tabs[n].show, e.tabs[n].hide), 
-                    this.pending = !1, this.helper.cb && this.helper.cb(this);
-                })), this.config.$el.addClass(e.tabs[n].hide)) : (this.anim.emitter.once("end", (() => {
-                    this.config.current = !0, this.pending = !1, this.helper.cb && this.helper.cb(this);
-                })), this.config.$el.addClass(e.tabs.active), w((() => {
-                    this.config.$el.addClass(e.tabs[n].show);
-                })));
-            } else this.config.current = !t, this.config.$el[(t ? "remove" : "add") + "Class"](e.tabs.active), 
-            this.helper.cb && this.helper.cb(this);
-        }
+        // _worked__change(hide: boolean): void {
+        //   const cls = this.tabs.config.classes;
+        //   if (this.tabs.config.isMutable) {
+        //     const mutation = this.tabs.config.mutation as MutationType;
+        //     this.pending = true;
+        //     if (hide) {
+        //       this.anim!.emitter.once('end', () => {
+        //         this.config.current = false;
+        //         this.config.$el.removeClass(cls.tabs.active, cls.tabs[mutation].show, cls.tabs[mutation].hide);
+        //         this.pending = false;
+        //         this.helper.cb && this.helper.cb(this);
+        //       });
+        //       this.config.$el.addClass(cls.tabs[mutation].hide);
+        //     } else {
+        //       this.anim!.emitter.once('end', () => {
+        //         this.config.current = true;
+        //         this.pending = false;
+        //         this.helper.cb && this.helper.cb(this);
+        //       })
+        //       this.config.$el.addClass(cls.tabs.active);
+        //       nextTick(() => {
+        //         this.config.$el.addClass(cls.tabs[mutation].show);
+        //       })
+        //     }
+        //   } else {
+        //     this.config.current = !hide;
+        //     this.config.$el[(hide ? 'remove' : 'add') + 'Class'](cls.tabs.active);
+        //     this.helper.cb && this.helper.cb(this);
+        //   }
+        // }
         change(t) {
             const e = this.tabs.config.classes;
             if (this.tabs.config.isMutable) {
                 this.tabs.config.mutation;
                 const e = this.config.el;
-                this.pending = !0, t ? (e.classList.add("x-tab--trans-hide-from"), w((() => e.classList.add("x-tab--trans-hide-active")), (() => e.classList.remove("x-tab--trans-hide-from")), (() => {
-                    this.anim.emitter.once("end", (() => {
-                        this.config.current = !1, e.classList.remove("x-tab--trans-hide-to"), this.pending = !1, 
-                        e.classList.remove("x-tab--trans-hide-active", "x-tabs__tab--active"), w((() => this.helper.cb && this.helper.cb(this)));
-                    })), e.classList.add("x-tab--trans-hide-to");
-                }))) : (e.classList.add("x-tabs__tab--active"), w((() => e.classList.add("x-tab--trans-show-from")), [ () => e.classList.add("x-tab--trans-show-active"), 50 ], (() => e.classList.remove("x-tab--trans-show-from")), (() => {
-                    this.anim.emitter.once("end", (() => {
-                        this.config.current = !0, e.classList.remove("x-tab--trans-show-to"), this.pending = !1, 
-                        e.classList.remove("x-tab--trans-show-active"), w((() => this.helper.cb && this.helper.cb(this)));
-                    })), e.classList.add("x-tab--trans-show-to");
+                this.pending = !0, t ? x({
+                    animInst: this.anim,
+                    clsFrom: "x-tab--t-hide-from",
+                    clsActive: "x-tab--t-hide-active",
+                    clsTo: "x-tab--t-hide-to"
+                }, (() => {
+                    e.classList.remove("x-tabs__tab--active"), this.config.current = !1, this.pending = !1, 
+                    w((() => this.helper.cb && this.helper.cb(this)));
+                })) : (e.classList.add("x-tabs__tab--active"), x({
+                    animInst: this.anim,
+                    clsFrom: "x-tab--t-show-from",
+                    clsActive: "x-tab--t-show-active",
+                    clsTo: "x-tab--t-show-to"
+                }, (() => {
+                    this.config.current = !0, this.pending = !1, w((() => this.helper.cb && this.helper.cb(this)));
                 })));
             } else this.config.current = !t, this.config.$el[(t ? "remove" : "add") + "Class"](e.tabs.active), 
             this.helper.cb && this.helper.cb(this);
@@ -971,7 +971,7 @@ var Tabs = function() {
         show() {
             this.change(!1);
         }
-    }, I = {
+    }, $ = {
         transition: "x-tabs--transition",
         animation: "x-tabs--animation",
         tabs: {
@@ -979,12 +979,28 @@ var Tabs = function() {
             tab: "x-tabs__tab",
             active: "x-tabs__tab--active",
             transition: {
-                show: "x-tabs__tab--show",
-                hide: "x-tabs__tab--hide"
+                hide: {
+                    from: "x-tab--t-hide-from",
+                    active: "x-tab--t-hide-active",
+                    to: "x-tab--t-hide-to"
+                },
+                show: {
+                    from: "x-tab--t-show-from",
+                    active: "x-tab--t-show-active",
+                    to: "x-tab--t-show-to"
+                }
             },
             animation: {
-                show: "x-tabs__tab--show",
-                hide: "x-tabs__tab--hide"
+                hide: {
+                    from: "x-tab--a-hide-from",
+                    active: "x-tab--a-hide-active",
+                    to: "x-tab--a-hide-to"
+                },
+                show: {
+                    from: "x-tab--a-show-from",
+                    active: "x-tab--a-show-active",
+                    to: "x-tab--a-show-to"
+                }
             }
         }
     }, q = class {
@@ -1002,7 +1018,7 @@ var Tabs = function() {
                 isMutable: !!t.mutation,
                 current: 0,
                 pendingTab: void 0,
-                classes: t.classes ? k(I, t.classes) : I
+                classes: t.classes ? _($, t.classes) : $
             }, this.helper = new class {
                 cb;
             }, this.config.isMutable && this.config.el.classList.add("x-tabs--" + this.config.mutation);
@@ -1010,7 +1026,7 @@ var Tabs = function() {
             let n;
             for (let t = 0, r = e.length; t < r; t++) e[t].classList.contains("x-tabs__tab--active") && (n = t);
             for (let t = 0, r = e.length; t < r; t++) {
-                const r = e[t], i = new P(this, {
+                const r = e[t], i = new F(this, {
                     el: r,
                     index: t,
                     current: t === n,

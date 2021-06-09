@@ -1,9 +1,9 @@
-# @xaro/tabs
+# @xaro/tabs2
 > description
 
 ## Install
 ```sh
-npm install @xaro/tabs --save-dev
+npm install @xaro/tabs2
 ```
 
 ## Usage

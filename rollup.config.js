@@ -69,33 +69,33 @@ if (isDev) {  // Dev
   });
 } else {  // Prod
   config.push({
-  //   input: 'src/index.ts',
-  //   external: ['@xaro/event-emitter', '@xaro/micro-dom'],
-  //   output: [
-  //     {
-  //       sourcemap: true,
-  //       name,
-  //       format: 'es',
-  //       file: `dist/${filename}.es.js`,
-  //     }
-  //   ],
-  //   plugins: [
-  //     typescript({
-  //       target: 'esnext',
-  //     }),
-  //     terser({
-  //       format: {
-  //         beautify: true,
-  //         comments: true,
-  //       }
-  //     }),
-  //     scss({
-  //       watch: 'src/scss/',
-  //       output: `dist/${filename}.css`,
-  //       failOnError: true,
-  //     }),
-  //   ]
-  // }, {
+    input: 'src/index.ts',
+    external: ['@xaro/event-emitter', '@xaro/micro-dom'],
+    output: [
+      {
+        sourcemap: true,
+        name,
+        format: 'es',
+        file: `dist/${filename}.es.js`,
+      }
+    ],
+    plugins: [
+      typescript({
+        target: 'esnext',
+      }),
+      terser({
+        format: {
+          beautify: true,
+          comments: true,
+        }
+      }),
+      scss({
+        watch: 'src/scss/',
+        output: `dist/${filename}.css`,
+        failOnError: true,
+      }),
+    ]
+  }, {
     input: 'src/index.ts',
     output: [
       {

@@ -2,7 +2,7 @@
   "name": "@xaro/tabs2",
   "version": "0.0.0",
   "description": "Tabs with events and additional features",
-  "main": "./dist/tabs.js",
+  "main": "./dist/tabs.es.js",
   "types": "./dist/tabs.d.ts",
   "scripts": {
     "watch": "cross-env rollup -c -w --environment NODE_ENV:development",
