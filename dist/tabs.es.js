@@ -155,7 +155,7 @@ const h = class {
         }, this.helper = new class {
             cb;
         }, this.config.isMutable && this.config.el.classList.add("x-tabs--" + this.config.mutation);
-        const a = i(".x-tabs__tabs");
+        const a = this.config.$el.get(".x-tabs__tabs");
         let n, o = a.get(".x-tabs__tab"), b = i();
         for (const t of o) t.parentElement === a[0] && b.push(t);
         for (let t = 0, i = b.length; t < i; t++) b[t].classList.contains("x-tabs__tab--active") && (n = t);
@@ -168,8 +168,8 @@ const h = class {
             });
             this.tabs.push(s);
         }
-        if (this.config.current = n || 0, l.instances.push(this), s.plugins && Array.isArray(s.plugins)) for (const t of s.plugins) t instanceof h ? this.plugins.push(new t(this)) : (m = t) && "object" == typeof m && null !== m && this.plugins.push(new t.ctor(this, t.config));
-        var m;
+        if (this.config.current = n || 0, l.instances.push(this), s.plugins && Array.isArray(s.plugins)) for (const t of s.plugins) t instanceof h ? this.plugins.push(new t(this)) : (f = t) && "object" == typeof f && null !== f && this.plugins.push(new t.ctor(this, t.config));
+        var f;
         this.emitter.emit("init", this, this.config.current);
     }
     goTo(t) {

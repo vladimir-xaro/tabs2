@@ -1022,7 +1022,7 @@ var Tabs = function() {
             }, this.helper = new class {
                 cb;
             }, this.config.isMutable && this.config.el.classList.add("x-tabs--" + this.config.mutation);
-            const e = E(".x-tabs__tabs");
+            const e = this.config.$el.get(".x-tabs__tabs");
             let n, r = e.get(".x-tabs__tab"), i = E();
             for (const t of r) t.parentElement === e[0] && i.push(t);
             for (let t = 0, e = i.length; t < e; t++) i[t].classList.contains("x-tabs__tab--active") && (n = t);

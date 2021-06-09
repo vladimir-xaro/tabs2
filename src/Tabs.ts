@@ -88,7 +88,7 @@ const Tabs: I_TabsCtor = class implements I_Tabs {
       this.config.el.classList.add('x-tabs--' + this.config.mutation);
     }
 
-    const $tabsWrap: MicroDOM<HTMLElement> = _<HTMLElement>('.x-tabs__tabs');
+    const $tabsWrap: MicroDOM<HTMLElement> = this.config.$el.get<HTMLElement>('.x-tabs__tabs');
 
     let _$tabs = $tabsWrap.get<HTMLElement>('.x-tabs__tab');
     let $tabs = _<HTMLElement>();

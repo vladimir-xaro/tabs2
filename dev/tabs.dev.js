@@ -1481,7 +1481,7 @@
               if (this.config.isMutable) {
                   this.config.el.classList.add('x-tabs--' + this.config.mutation);
               }
-              var $tabsWrap = _('.x-tabs__tabs');
+              var $tabsWrap = this.config.$el.get('.x-tabs__tabs');
               var _$tabs = $tabsWrap.get('.x-tabs__tab');
               var $tabs = _();
               try {
