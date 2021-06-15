@@ -1,6 +1,6 @@
 {
   "name": "@xaro/tabs2",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Tabs with events and additional features",
   "main": "./dist/tabs.es.js",
   "types": "./dist/tabs.d.ts",
