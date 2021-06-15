@@ -1,5 +1,3 @@
-import './scss/index.dev.scss';
-
 import _ from '@xaro/micro-dom';
 import Tabs from './index';
 import Navigation from './plugins/Navigation/';

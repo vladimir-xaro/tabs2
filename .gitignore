@@ -1,6 +1,9 @@
 .DS_Store
 .env
-/dev
-/node_modules
+dev
+node_modules
+src/index.dev.ts
+src/scss/index.dev.scss
+
 package-lock.json
 README.md
