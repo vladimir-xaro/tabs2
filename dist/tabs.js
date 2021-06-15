@@ -29,19 +29,19 @@ var Tabs = function() {
         writable: !0,
         configurable: !0
       }
-    }), e && o(t, e);
+    }), e && s(t, e);
   }
   function a(t) {
     return (a = Object.setPrototypeOf ? Object.getPrototypeOf : function(t) {
       return t.__proto__ || Object.getPrototypeOf(t);
     })(t);
   }
-  function o(t, e) {
-    return (o = Object.setPrototypeOf || function(t, e) {
+  function s(t, e) {
+    return (s = Object.setPrototypeOf || function(t, e) {
       return t.__proto__ = e, t;
     })(t, e);
   }
-  function s() {
+  function o() {
     if ("undefined" == typeof Reflect || !Reflect.construct) return !1;
     if (Reflect.construct.sham) return !1;
     if ("function" == typeof Proxy) return !0;
@@ -53,11 +53,11 @@ var Tabs = function() {
     }
   }
   function c(t, e, n) {
-    return (c = s() ? Reflect.construct : function(t, e, n) {
+    return (c = o() ? Reflect.construct : function(t, e, n) {
       var r = [ null ];
       r.push.apply(r, e);
       var i = new (Function.bind.apply(t, r));
-      return n && o(i, n.prototype), i;
+      return n && s(i, n.prototype), i;
     }).apply(null, arguments);
   }
   function u(t) {
@@ -80,7 +80,7 @@ var Tabs = function() {
           writable: !0,
           configurable: !0
         }
-      }), o(r, t);
+      }), s(r, t);
     })(t);
   }
   function h(t, e) {
@@ -90,7 +90,7 @@ var Tabs = function() {
     }(t) : e;
   }
   function l(t) {
-    var e = s();
+    var e = o();
     return function() {
       var n, r = a(t);
       if (e) {
@@ -145,23 +145,23 @@ var Tabs = function() {
       }
       throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
     }
-    var a, o = !0, s = !1;
+    var a, s = !0, o = !1;
     return {
       s: function() {
         n = n.call(t);
       },
       n: function() {
         var t = n.next();
-        return o = t.done, t;
+        return s = t.done, t;
       },
       e: function(t) {
-        s = !0, a = t;
+        o = !0, a = t;
       },
       f: function() {
         try {
-          o || null == n.return || n.return();
+          s || null == n.return || n.return();
         } finally {
-          if (s) throw a;
+          if (o) throw a;
         }
       }
     };
@@ -189,8 +189,8 @@ var Tabs = function() {
           var i, a = y(e);
           try {
             for (a.s(); !(i = a.n()).done; ) {
-              var o = i.value;
-              r.push.apply(r, f(this.subscribe(t, o)));
+              var s = i.value;
+              r.push.apply(r, f(this.subscribe(t, s)));
             }
           } catch (t) {
             a.e(t);
@@ -259,16 +259,16 @@ var Tabs = function() {
       value: function(t) {
         for (var e = this.events[t], n = arguments.length, r = new Array(n > 1 ? n - 1 : 0), i = 1; i < n; i++) r[i - 1] = arguments[i];
         if (e) {
-          var a, o = y(e);
+          var a, s = y(e);
           try {
-            for (o.s(); !(a = o.n()).done; ) {
-              var s = a.value;
-              s.apply(void 0, r);
+            for (s.s(); !(a = s.n()).done; ) {
+              var o = a.value;
+              o.apply(void 0, r);
             }
           } catch (t) {
-            o.e(t);
+            s.e(t);
           } finally {
-            o.f();
+            s.f();
           }
         }
       }
@@ -283,16 +283,16 @@ var Tabs = function() {
         var e = this.events[t];
         if (!e) return !1;
         for (var n = arguments.length, r = new Array(n > 1 ? n - 1 : 0), i = 1; i < n; i++) r[i - 1] = arguments[i];
-        var a, o = y(e);
+        var a, s = y(e);
         try {
-          for (o.s(); !(a = o.n()).done; ) {
-            var s = a.value;
-            if (!s.apply(void 0, r)) return !1;
+          for (s.s(); !(a = s.n()).done; ) {
+            var o = a.value;
+            if (!o.apply(void 0, r)) return !1;
           }
         } catch (t) {
-          o.e(t);
+          s.e(t);
         } finally {
-          o.f();
+          s.f();
         }
         return !0;
       }
@@ -306,7 +306,7 @@ var Tabs = function() {
         var e = this.events[t];
         if (e) {
           for (var n, r = arguments.length, i = new Array(r > 1 ? r - 1 : 0), a = 1; a < r; a++) i[a - 1] = arguments[a];
-          for (var o = 0; o < e.length; o++) n = 0 === o ? e[o].apply(e, i) : e[o](n);
+          for (var s = 0; s < e.length; s++) n = 0 === s ? e[s].apply(e, i) : e[s](n);
           return n;
         }
       }
@@ -314,20 +314,20 @@ var Tabs = function() {
   }();
   function b(t) {
     for (var e = [], n = arguments.length, r = new Array(n > 1 ? n - 1 : 0), i = 1; i < n; i++) r[i - 1] = arguments[i];
-    for (var a = 0, o = r; a < o.length; a++) {
-      var s = o[a];
-      if ("string" == typeof s) {
-        var c = t.querySelectorAll(s);
+    for (var a = 0, s = r; a < s.length; a++) {
+      var o = s[a];
+      if ("string" == typeof o) {
+        var c = t.querySelectorAll(o);
         e.push.apply(e, f(c));
-      } else s instanceof Element && e.push(s);
+      } else o instanceof Element && e.push(o);
     }
     return e;
   }
   function g(t) {
     for (var e = arguments.length, n = new Array(e > 1 ? e - 1 : 0), r = 1; r < e; r++) n[r - 1] = arguments[r];
     for (var i = 0, a = n; i < a.length; i++) {
-      var o = a[i];
-      Array.isArray(o) ? g.apply(void 0, [ t ].concat(f(o))) : t.append(o);
+      var s = a[i];
+      Array.isArray(s) ? g.apply(void 0, [ t ].concat(f(s))) : t.append(s);
     }
   }
   function m(t, e) {
@@ -357,16 +357,16 @@ var Tabs = function() {
       value: function() {
         for (var t = new a, e = arguments.length, n = new Array(e), r = 0; r < e; r++) n[r] = arguments[r];
         if (this.length) {
-          var i, o = y(this);
+          var i, s = y(this);
           try {
-            for (o.s(); !(i = o.n()).done; ) {
-              var s = i.value;
-              t.push.apply(t, f(b.apply(void 0, [ s ].concat(n))));
+            for (s.s(); !(i = s.n()).done; ) {
+              var o = i.value;
+              t.push.apply(t, f(b.apply(void 0, [ o ].concat(n))));
             }
           } catch (t) {
-            o.e(t);
+            s.e(t);
           } finally {
-            o.f();
+            s.f();
           }
         } else t.push.apply(t, f(b.apply(void 0, [ document ].concat(n))));
         return t;
@@ -377,11 +377,11 @@ var Tabs = function() {
       key: "create",
       value: function() {
         for (var t = new a, e = arguments.length, n = new Array(e), r = 0; r < e; r++) n[r] = arguments[r];
-        for (var i = 0, o = n; i < o.length; i++) {
-          var s = o[i];
-          if ("string" == typeof s) t.push(document.createElement(s)); else if (s instanceof Object) {
-            var c = document.createElement(s.tagName || "div");
-            s.content && (Array.isArray(s.content) ? g.apply(void 0, [ c ].concat(f(s.content))) : g(c, s.content)), 
+        for (var i = 0, s = n; i < s.length; i++) {
+          var o = s[i];
+          if ("string" == typeof o) t.push(document.createElement(o)); else if (o instanceof Object) {
+            var c = document.createElement(o.tagName || "div");
+            o.content && (Array.isArray(o.content) ? g.apply(void 0, [ c ].concat(f(o.content))) : g(c, o.content)), 
             t.push(c);
           }
         }
@@ -466,8 +466,8 @@ var Tabs = function() {
                 var r, i = y(this);
         try {
           for (i.s(); !(r = i.n()).done; ) {
-            var o = r.value;
-            o.classList.contains(t) && n.push(o);
+            var s = r.value;
+            s.classList.contains(t) && n.push(s);
           }
         } catch (t) {
           i.e(t);
@@ -546,41 +546,41 @@ var Tabs = function() {
   function k(t) {
     return t && "object" == typeof t && null !== t && !Array.isArray(t);
   }
-  function x(t, e) {
+  function _(t, e) {
     var n = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : {}, r = void 0 === n.mergeObjects || !!n.mergeObjects;
     if (k(t) && k(e)) for (var i = 0, a = Object.keys(e); i < a.length; i++) {
-      var o, s = a[i];
-      r && k(e[s]) ? (t[s] && k(t[s]) || (t[s] = e[s]), x(t[s], e[s])) : n.mergeArrays && Array.isArray(e[s]) ? (console.log(s), 
-      Array.isArray(t[s]) ? (o = t[s]).push.apply(o, f(e[s])) : Object.assign(t, {
-        [s]: e[s]
+      var s, o = a[i];
+      r && k(e[o]) ? (t[o] && k(t[o]) || (t[o] = e[o]), _(t[o], e[o])) : n.mergeArrays && Array.isArray(e[o]) ? (console.log(o), 
+      Array.isArray(t[o]) ? (s = t[o]).push.apply(s, f(e[o])) : Object.assign(t, {
+        [o]: e[o]
       })) : Object.assign(t, {
-        [s]: e[s]
+        [o]: e[o]
       });
     }
     return t;
   }
-  const _ = class {
+  const L = class {
     tabs;
     constructor(t) {
       this.tabs = t;
     }
   };
-  function L(t) {
+  function x(t) {
     for (var e = [], n = arguments.length, r = new Array(n > 1 ? n - 1 : 0), i = 1; i < n; i++) r[i - 1] = arguments[i];
-    for (var a = 0, o = r; a < o.length; a++) {
-      var s = o[a];
-      if ("string" == typeof s) {
-        var c = t.querySelectorAll(s);
+    for (var a = 0, s = r; a < s.length; a++) {
+      var o = s[a];
+      if ("string" == typeof o) {
+        var c = t.querySelectorAll(o);
         e.push.apply(e, f(c));
-      } else s instanceof Element && e.push(s);
+      } else o instanceof Element && e.push(o);
     }
     return e;
   }
   function C(t) {
     for (var e = arguments.length, n = new Array(e > 1 ? e - 1 : 0), r = 1; r < e; r++) n[r - 1] = arguments[r];
     for (var i = 0, a = n; i < a.length; i++) {
-      var o = a[i];
-      Array.isArray(o) ? C.apply(void 0, [ t ].concat(f(o))) : t.append(o);
+      var s = a[i];
+      Array.isArray(s) ? C.apply(void 0, [ t ].concat(f(s))) : t.append(s);
     }
   }
   function O() {
@@ -605,18 +605,18 @@ var Tabs = function() {
       value: function() {
         for (var t = new a, e = arguments.length, n = new Array(e), r = 0; r < e; r++) n[r] = arguments[r];
         if (this.length) {
-          var i, o = y(this);
+          var i, s = y(this);
           try {
-            for (o.s(); !(i = o.n()).done; ) {
-              var s = i.value;
-              t.push.apply(t, f(L.apply(void 0, [ s ].concat(n))));
+            for (s.s(); !(i = s.n()).done; ) {
+              var o = i.value;
+              t.push.apply(t, f(x.apply(void 0, [ o ].concat(n))));
             }
           } catch (t) {
-            o.e(t);
+            s.e(t);
           } finally {
-            o.f();
+            s.f();
           }
-        } else t.push.apply(t, f(L.apply(void 0, [ document ].concat(n))));
+        } else t.push.apply(t, f(x.apply(void 0, [ document ].concat(n))));
         return t;
       }
       /**
@@ -625,11 +625,11 @@ var Tabs = function() {
       key: "create",
       value: function() {
         for (var t = new a, e = arguments.length, n = new Array(e), r = 0; r < e; r++) n[r] = arguments[r];
-        for (var i = 0, o = n; i < o.length; i++) {
-          var s = o[i];
-          if ("string" == typeof s) t.push(document.createElement(s)); else if (s instanceof Object) {
-            var c = document.createElement(s.tagName || "div");
-            s.content && (Array.isArray(s.content) ? C.apply(void 0, [ c ].concat(f(s.content))) : C(c, s.content)), 
+        for (var i = 0, s = n; i < s.length; i++) {
+          var o = s[i];
+          if ("string" == typeof o) t.push(document.createElement(o)); else if (o instanceof Object) {
+            var c = document.createElement(o.tagName || "div");
+            o.content && (Array.isArray(o.content) ? C.apply(void 0, [ c ].concat(f(o.content))) : C(c, o.content)), 
             t.push(c);
           }
         }
@@ -792,7 +792,7 @@ var Tabs = function() {
   }( u(Array));
   function T() {
     for (var t = arguments.length, e = new Array(t), n = 0; n < t; n++) e[n] = arguments[n];
-    return e instanceof j ? e : c(j, f(L.apply(void 0, [ document ].concat(e))));
+    return e instanceof j ? e : c(j, f(x.apply(void 0, [ document ].concat(e))));
   }
   var S = {
     animationstart: "__mutationStartListener",
@@ -808,10 +808,10 @@ var Tabs = function() {
       var i = this;
       t(this, e), r(this, "els", void 0), r(this, "emitter", void 0), r(this, "allow", void 0), 
       r(this, "pending", !1), this.emitter = new d(n.on), this.els = Array.isArray(n.el) ? T.apply(void 0, f(n.el)) : T(n.el);
-      var a = n.allow, o = n.disallow;
+      var a = n.allow, s = n.disallow;
       a && a.length > 0 ? this.allow = (Array.isArray(a) ? a : [ a ]).filter((function(t) {
         return M.includes(t.toLowerCase());
-      })) : o && o.length > 0 ? this.allow = (Array.isArray(o) ? o : [ o ]).filter((function(t) {
+      })) : s && s.length > 0 ? this.allow = (Array.isArray(s) ? s : [ s ]).filter((function(t) {
         return M.includes(t.toLowerCase());
       })) : this.allow = M, // if (config.allow) {
       //   this.allow = (Array.isArray(config.allow) ? config.allow : [ config.allow ]).filter(value => events.includes(value));
@@ -885,7 +885,7 @@ var Tabs = function() {
     }, 10 ]);
   }
   const I = {
-    animation: [ "start", "cancel", "end", "iteration" ],
+    // animation:  [ 'start', 'cancel', 'end', 'iteration' ],
     transition: [ "start", "cancel", "end", "run" ]
   }, $ = class {
     tabs;
@@ -909,15 +909,15 @@ var Tabs = function() {
     change(t, e) {
       const n = this.tabs.config.classes;
       if (e && e.force) return this.config.current = !t, this.config.$el[(t ? "remove" : "add") + "Class"](n.tabs.active), 
-      this.config.$el.removeClass("x-tab--t-hide-from", "x-tab--t-hide-active", "x-tab--t-hide-to", "x-tab--t-show-from", "x-tab--t-show-active", "x-tab--t-show-to"), 
+      this.config.$el.removeClass(n.tabs.transition.hide.from, n.tabs.transition.hide.active, n.tabs.transition.hide.to, n.tabs.transition.show.from, n.tabs.transition.show.active, n.tabs.transition.show.to), 
       void (this.helper.cb && this.helper.cb(this));
       if (this.tabs.config.isMutable) {
         this.tabs.config.mutation;
         const e = this.config.el;
-        this.pending = !0, t ? P(this.anim, "x-tab--t-hide-from", "x-tab--t-hide-active", "x-tab--t-hide-to", (() => {
+        this.pending = !0, t ? P(this.anim, n.tabs.transition.hide.from, n.tabs.transition.hide.active, n.tabs.transition.hide.to, (() => {
           e.classList.remove("x-tabs__tab--active"), this.config.current = !1, this.pending = !1, 
           w((() => this.helper.cb && this.helper.cb(this)));
-        })) : (e.classList.add("x-tabs__tab--active"), P(this.anim, "x-tab--t-show-from", "x-tab--t-show-active", "x-tab--t-show-to", (() => {
+        })) : (e.classList.add("x-tabs__tab--active"), P(this.anim, n.tabs.transition.show.from, n.tabs.transition.show.active, n.tabs.transition.show.to, (() => {
           this.config.current = !0, this.pending = !1, w((() => this.helper.cb && this.helper.cb(this)));
         })));
       } else this.config.current = !t, this.config.$el[(t ? "remove" : "add") + "Class"](n.tabs.active), 
@@ -931,7 +931,7 @@ var Tabs = function() {
     }
   }, q = {
     transition: "x-tabs--transition",
-    animation: "x-tabs--animation",
+    // animation:  'x-tabs--animation',
     tabs: {
       wrapper: "x-tabs__tabs",
       tab: "x-tabs__tab",
@@ -946,18 +946,6 @@ var Tabs = function() {
           from: "x-tab--t-show-from",
           active: "x-tab--t-show-active",
           to: "x-tab--t-show-to"
-        }
-      },
-      animation: {
-        hide: {
-          from: "x-tab--a-hide-from",
-          active: "x-tab--a-hide-active",
-          to: "x-tab--a-hide-to"
-        },
-        show: {
-          from: "x-tab--a-show-from",
-          active: "x-tab--a-show-active",
-          to: "x-tab--a-show-to"
         }
       }
     }
@@ -976,14 +964,15 @@ var Tabs = function() {
         isMutable: !!t.mutation,
         current: 0,
         pendingTab: void 0,
-        classes: t.classes ? x(q, t.classes) : q
+        classes: t.classes ? _(q, t.classes) : q
       }, this.helper = new class {
         cb;
       }, this.config.isMutable && this.config.el.classList.add("x-tabs--" + this.config.mutation);
       const e = this.config.$el.get(".x-tabs__tabs");
       let n, r = e.get(".x-tabs__tab"), i = A();
       for (const t of r) t.parentElement === e[0] && i.push(t);
-      for (let t = 0, e = i.length; t < e; t++) i[t].classList.contains("x-tabs__tab--active") && (n = t);
+      for (let t = 0, e = i.length; t < e; t++) i[t].classList.contains(this.config.classes.tabs.active) && (n = t);
+      i.length && i[0].classList.add(this.config.classes.tabs.active);
       for (let t = 0, e = i.length; t < e; t++) {
         const e = i[t], r = new $(this, {
           el: e,
@@ -993,7 +982,7 @@ var Tabs = function() {
         });
         this.tabs.push(r);
       }
-      if (this.config.current = n || 0, B.instances.push(this), t.plugins && Array.isArray(t.plugins)) for (const e of t.plugins) e instanceof _ ? this.plugins.push(new e(this)) : k(e) && this.plugins.push(new e.ctor(this, e.config));
+      if (this.config.current = n || 0, B.instances.push(this), t.plugins && Array.isArray(t.plugins)) for (const e of t.plugins) e instanceof L ? this.plugins.push(new e(this)) : k(e) && this.plugins.push(new e.ctor(this, e.config));
       this.emitter.emit("init", this, this.config.current);
     }
     goTo(t, e) {

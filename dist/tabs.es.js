@@ -22,7 +22,7 @@ function animate(animInst, clsFrom, clsActive, clsTo, afterEnd) {
 }
 
 const animEventsPostfix = {
-  animation: [ "start", "cancel", "end", "iteration" ],
+  // animation:  [ 'start', 'cancel', 'end', 'iteration' ],
   transition: [ "start", "cancel", "end", "run" ]
 }, Tab = class {
   tabs;
@@ -46,15 +46,15 @@ const animEventsPostfix = {
   change(hide, config) {
     const cls = this.tabs.config.classes;
     if (config && config.force) return this.config.current = !hide, this.config.$el[(hide ? "remove" : "add") + "Class"](cls.tabs.active), 
-    this.config.$el.removeClass("x-tab--t-hide-from", "x-tab--t-hide-active", "x-tab--t-hide-to", "x-tab--t-show-from", "x-tab--t-show-active", "x-tab--t-show-to"), 
+    this.config.$el.removeClass(cls.tabs.transition.hide.from, cls.tabs.transition.hide.active, cls.tabs.transition.hide.to, cls.tabs.transition.show.from, cls.tabs.transition.show.active, cls.tabs.transition.show.to), 
     void (this.helper.cb && this.helper.cb(this));
     if (this.tabs.config.isMutable) {
       this.tabs.config.mutation;
       const el = this.config.el;
-      this.pending = !0, hide ? animate(this.anim, "x-tab--t-hide-from", "x-tab--t-hide-active", "x-tab--t-hide-to", (() => {
+      this.pending = !0, hide ? animate(this.anim, cls.tabs.transition.hide.from, cls.tabs.transition.hide.active, cls.tabs.transition.hide.to, (() => {
         el.classList.remove("x-tabs__tab--active"), this.config.current = !1, this.pending = !1, 
         nextTick((() => this.helper.cb && this.helper.cb(this)));
-      })) : (el.classList.add("x-tabs__tab--active"), animate(this.anim, "x-tab--t-show-from", "x-tab--t-show-active", "x-tab--t-show-to", (() => {
+      })) : (el.classList.add("x-tabs__tab--active"), animate(this.anim, cls.tabs.transition.show.from, cls.tabs.transition.show.active, cls.tabs.transition.show.to, (() => {
         this.config.current = !0, this.pending = !1, nextTick((() => this.helper.cb && this.helper.cb(this)));
       })));
     } else this.config.current = !hide, this.config.$el[(hide ? "remove" : "add") + "Class"](cls.tabs.active), 
@@ -68,7 +68,7 @@ const animEventsPostfix = {
   }
 }, defaultClasses = {
   transition: "x-tabs--transition",
-  animation: "x-tabs--animation",
+  // animation:  'x-tabs--animation',
   tabs: {
     wrapper: "x-tabs__tabs",
     tab: "x-tabs__tab",
@@ -83,18 +83,6 @@ const animEventsPostfix = {
         from: "x-tab--t-show-from",
         active: "x-tab--t-show-active",
         to: "x-tab--t-show-to"
-      }
-    },
-    animation: {
-      hide: {
-        from: "x-tab--a-hide-from",
-        active: "x-tab--a-hide-active",
-        to: "x-tab--a-hide-to"
-      },
-      show: {
-        from: "x-tab--a-show-from",
-        active: "x-tab--a-show-active",
-        to: "x-tab--a-show-to"
       }
     }
   }
@@ -120,7 +108,8 @@ const animEventsPostfix = {
     const $tabsWrap = this.config.$el.get(".x-tabs__tabs");
     let currentIndex, _$tabs = $tabsWrap.get(".x-tabs__tab"), $tabs = _();
     for (const el of _$tabs) el.parentElement === $tabsWrap[0] && $tabs.push(el);
-    for (let i = 0, l = $tabs.length; i < l; i++) $tabs[i].classList.contains("x-tabs__tab--active") && (currentIndex = i);
+    for (let i = 0, l = $tabs.length; i < l; i++) $tabs[i].classList.contains(this.config.classes.tabs.active) && (currentIndex = i);
+    $tabs.length && $tabs[0].classList.add(this.config.classes.tabs.active);
     for (let i = 0, l = $tabs.length; i < l; i++) {
       const el = $tabs[i], tab = new Tab(this, {
         el: el,

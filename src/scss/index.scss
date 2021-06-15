@@ -5,36 +5,7 @@
   flex-direction: column;
   
   &--animation {}
-  &--transition {
-    // #{$self}__nav {
-    //   opacity: 0;
-    //   transition-duration: 250ms;
-
-    //   &--active {
-    //     display: block;
-    //   }
-    //   &--show {
-    //     opacity: 1;
-    //   }
-    //   &--hide {
-    //     opacity: 0;
-    //   }
-    // }
-    #{$self}__tab {
-      // opacity: 0;
-      // transition-duration: 750ms;
-
-      // &--active {
-      //   display: block;
-      // }
-      // &--show {
-      //   opacity: 1;
-      // }
-      // &--hide {
-      //   opacity: 0;
-      // }
-    }
-  }
+  &--transition {}
 
   &__navs {
     display: flex;
@@ -91,7 +62,6 @@
 // }
 
 .x-tab {
-  // x-tab--trans-hide-from
   &--active {
     display: block;
   }

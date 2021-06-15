@@ -15,7 +15,7 @@ import { MutationType } from "./types/types";
 import { animate } from "./helpers";
 
 const animEventsPostfix = {
-  animation:  [ 'start', 'cancel', 'end', 'iteration' ],
+  // animation:  [ 'start', 'cancel', 'end', 'iteration' ],
   transition: [ 'start', 'cancel', 'end', 'run' ]
 }
 
@@ -57,8 +57,12 @@ const Tab: I_TabCtor = class implements I_Tab {
       this.config.current = !hide;
       this.config.$el[(hide ? 'remove' : 'add') + 'Class'](cls.tabs.active);
       this.config.$el.removeClass(
-        'x-tab--t-hide-from','x-tab--t-hide-active', 'x-tab--t-hide-to',
-        'x-tab--t-show-from', 'x-tab--t-show-active', 'x-tab--t-show-to'
+        cls.tabs.transition.hide.from,
+        cls.tabs.transition.hide.active,
+        cls.tabs.transition.hide.to,
+        cls.tabs.transition.show.from,
+        cls.tabs.transition.show.active,
+        cls.tabs.transition.show.to,
       );
       this.helper.cb && this.helper.cb(this);
       return;
@@ -73,9 +77,9 @@ const Tab: I_TabCtor = class implements I_Tab {
       if (hide) {
         animate(
           this.anim!,
-          'x-tab--t-hide-from',
-          'x-tab--t-hide-active',
-          'x-tab--t-hide-to',
+          cls.tabs.transition.hide.from,
+          cls.tabs.transition.hide.active,
+          cls.tabs.transition.hide.to,
           () => {
             el.classList.remove('x-tabs__tab--active');
             this.config.current = false;
@@ -87,9 +91,9 @@ const Tab: I_TabCtor = class implements I_Tab {
         el.classList.add('x-tabs__tab--active');
         animate(
           this.anim!,
-          'x-tab--t-show-from',
-          'x-tab--t-show-active',
-          'x-tab--t-show-to',
+          cls.tabs.transition.show.from,
+          cls.tabs.transition.show.active,
+          cls.tabs.transition.show.to,
           () => {
             this.config.current = true;
             this.pending = false;

@@ -1,10 +1,11 @@
 import {
-  TabsCtor      as I_TabsCtor,
-  Tabs          as I_Tabs,
-  TabsCtorCfg   as I_TabsCtorCfg,
-  TabsCfg       as I_TabsCfg,
-  TabsPluginCfg as I_TabsPluginCfg,
-  TabsGoToCfg   as I_TabsGoToCfg,
+  TabsCtor        as I_TabsCtor,
+  Tabs            as I_Tabs,
+  TabsCtorCfg     as I_TabsCtorCfg,
+  TabsCfg         as I_TabsCfg,
+  TabsPluginCfg   as I_TabsPluginCfg,
+  TabsGoToCfg     as I_TabsGoToCfg,
+  TabsCfgClasses  as I_TabsCfgClasses,
 } from "./types/Tabs";
 import {
   Tab as I_Tab
@@ -22,9 +23,9 @@ import Plugin from "./Plugin";
 import Tab from "./Tab";
 import Helper from "./Helper";
 
-const defaultClasses = {
+const defaultClasses: I_TabsCfgClasses = {
   transition: 'x-tabs--transition',
-  animation:  'x-tabs--animation',
+  // animation:  'x-tabs--animation',
   tabs: {
     wrapper:  'x-tabs__tabs',
     tab:      'x-tabs__tab',
@@ -43,18 +44,18 @@ const defaultClasses = {
       },
     },
 
-    animation: {
-      hide: {
-        from:   'x-tab--a-hide-from',
-        active: 'x-tab--a-hide-active',
-        to:     'x-tab--a-hide-to',
-      },
-      show: {
-        from:   'x-tab--a-show-from',
-        active: 'x-tab--a-show-active',
-        to:     'x-tab--a-show-to',
-      },
-    }
+    // animation: {
+    //   hide: {
+    //     from:   'x-tab--a-hide-from',
+    //     active: 'x-tab--a-hide-active',
+    //     to:     'x-tab--a-hide-to',
+    //   },
+    //   show: {
+    //     from:   'x-tab--a-show-from',
+    //     active: 'x-tab--a-show-active',
+    //     to:     'x-tab--a-show-to',
+    //   },
+    // },
   },
 };
 
@@ -103,10 +104,14 @@ const Tabs: I_TabsCtor = class implements I_Tabs {
     let currentIndex: number | undefined;
     for (let i = 0, l = $tabs.length; i < l; i++) {
       if (hasCurrent) {
-        $tabs[i].classList.remove('x-tabs__tab--active');
-      } else if ($tabs[i].classList.contains('x-tabs__tab--active')) {
+        $tabs[i].classList.remove(this.config.classes.tabs.active);
+      } else if ($tabs[i].classList.contains(this.config.classes.tabs.active)) {
         currentIndex = i;
       }
+    }
+
+    if (! hasCurrent && $tabs.length) {
+      $tabs[0].classList.add(this.config.classes.tabs.active);
     }
 
     for (let i = 0, l = $tabs.length; i < l; i++) {

@@ -30,41 +30,7 @@ export interface TabsCtorCfg {
   mutation?:      MutationType | false;
   plugins?:       Array<PluginCtor | TabsPluginCfg>;
 
-  classes?: {
-    transition?:  string;
-    animation?:   string;
-    tabs?: {
-      wrapper?:   string;
-      tab?:       string;
-      active?:    string;
-      
-      transition?: {
-        hide?: {
-          from?:    string;
-          active?:  string;
-          to?:      string;
-        };
-        show?: {
-          from?:    string;
-          active?:  string;
-          to?:      string;
-        };
-      };
-
-      animation?: {
-        hide?: {
-          from?:    string;
-          active?:  string;
-          to?:      string;
-        };
-        show?: {
-          from?:    string;
-          active?:  string;
-          to?:      string;
-        };
-      };
-    };
-  };
+  classes?:       TabsCtorCfgClasses
 
   [key: string]:  any;
 }
@@ -77,61 +43,82 @@ export interface TabsCfg {
   current:        number;
   pendingTab?:    Tab;
 
-  classes: {
-    transition: string;
-    animation:  string;
-
-    tabs: {
-      wrapper:  string;
-      tab:      string;
-      active:   string;
-
-      transition: {
-        hide: {
-          from:   string;
-          active: string;
-          to:     string;
-        };
-        show: {
-          from:   string;
-          active: string;
-          to:     string;
-        };
-      };
-
-      animation: {
-        hide: {
-          from:   string;
-          active: string;
-          to:     string;
-        };
-        show: {
-          from:   string;
-          active: string;
-          to:     string;
-        };
-      };
-    };
-  };
+  classes:        TabsCfgClasses
 
   [key: string]:  any;
 }
 
-// export interface TabsCfgClassesTabs {
-//   wrapper:  string;
-//   tab:      string;
-//   active:   string;
-  
-//   transition: {
-//     show: string;
-//     hide: string;
-//   };
+export interface TabsCtorCfgClasses {
+  transition?:  string;
+  // animation?:   string;
+  tabs?: {
+    wrapper?:   string;
+    tab?:       string;
+    active?:    string;
 
-//   animation: {
-//     show: string;
-//     hide: string;
-//   };
-// }
+    transition?: {
+      hide?: {
+        from?:    string;
+        active?:  string;
+        to?:      string;
+      };
+      show?: {
+        from?:    string;
+        active?:  string;
+        to?:      string;
+      };
+    };
+
+    // animation?: {
+    //   hide?: {
+    //     from?:    string;
+    //     active?:  string;
+    //     to?:      string;
+    //   };
+    //   show?: {
+    //     from?:    string;
+    //     active?:  string;
+    //     to?:      string;
+    //   };
+    // };
+  };
+}
+
+export interface TabsCfgClasses {
+  transition: string;
+  // animation:  string;
+  tabs: {
+    wrapper:  string;
+    tab:      string;
+    active:   string;
+
+    transition: {
+      hide: {
+        from:   string;
+        active: string;
+        to:     string;
+      };
+      show: {
+        from:   string;
+        active: string;
+        to:     string;
+      };
+    };
+
+    // animation: {
+    //   hide: {
+    //     from:   string;
+    //     active: string;
+    //     to:     string;
+    //   };
+    //   show: {
+    //     from:   string;
+    //     active: string;
+    //     to:     string;
+    //   };
+    // };
+  };
+}
 
 export interface TabsPluginCfg {
   ctor:     PluginCtor;
