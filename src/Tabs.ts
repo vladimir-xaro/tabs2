@@ -17,8 +17,7 @@ import { Helper as I_Helper } from "./types/Helper";
 
 import EventEmitter from "@xaro/event-emitter";
 import _, { MicroDOM } from "@xaro/micro-dom";
-import deepmerge from "@xaro/deepmerge";
-import { isObject } from "./helpers";
+import { isObject, merge } from "@xaro/helpers";
 import Plugin from "./Plugin";
 import Tab from "./Tab";
 import Helper from "./Helper";
@@ -79,7 +78,7 @@ const Tabs: I_TabsCtor = class implements I_Tabs {
       current:    0,
       pendingTab: undefined,
       classes:    config.classes ?
-                    deepmerge(defaultClasses, config.classes) :
+                    merge(defaultClasses, config.classes) :
                     defaultClasses,
     };
 

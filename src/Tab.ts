@@ -71,29 +71,31 @@ const Tab: I_TabCtor = class implements I_Tab {
       this.pending = true;
 
       if (hide) {
-        animate({
-          animInst:   this.anim,
-          clsFrom:   'x-tab--t-hide-from',
-          clsActive: 'x-tab--t-hide-active',
-          clsTo:     'x-tab--t-hide-to',
-        }, () => {
-          el.classList.remove('x-tabs__tab--active');
-          this.config.current = false;
-          this.pending = false;
-          nextTick(() => this.helper.cb && this.helper.cb(this));
-        });
+        animate(
+          this.anim!,
+          'x-tab--t-hide-from',
+          'x-tab--t-hide-active',
+          'x-tab--t-hide-to',
+          () => {
+            el.classList.remove('x-tabs__tab--active');
+            this.config.current = false;
+            this.pending = false;
+            nextTick(() => this.helper.cb && this.helper.cb(this));
+          }
+        );
       } else {
         el.classList.add('x-tabs__tab--active');
-        animate({
-          animInst:   this.anim,
-          clsFrom:   'x-tab--t-show-from',
-          clsActive: 'x-tab--t-show-active',
-          clsTo:     'x-tab--t-show-to',
-        }, () => {
-          this.config.current = true;
-          this.pending = false;
-          nextTick(() => this.helper.cb && this.helper.cb(this));
-        });
+        animate(
+          this.anim!,
+          'x-tab--t-show-from',
+          'x-tab--t-show-active',
+          'x-tab--t-show-to',
+          () => {
+            this.config.current = true;
+            this.pending = false;
+            nextTick(() => this.helper.cb && this.helper.cb(this));
+          }
+        );
       }
     } else {
       this.config.current = !hide;

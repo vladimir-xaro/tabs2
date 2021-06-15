@@ -342,7 +342,7 @@ var Tabs = function() {
     return "function" == typeof r ? m(e, r) : Array.isArray(r) && m(e, r[0], r[1]), 
     this;
   }
-  var A =  function(e) {
+  var E =  function(e) {
     i(a, e);
     var r = l(a);
     function a() {
@@ -539,45 +539,33 @@ var Tabs = function() {
       }
     } ]), a;
   }( u(Array));
-  function E() {
+  function A() {
     for (var t = arguments.length, e = new Array(t), n = 0; n < t; n++) e[n] = arguments[n];
-    return e instanceof A ? e : c(A, f(b.apply(void 0, [ document ].concat(e))));
+    return e instanceof E ? e : c(E, f(b.apply(void 0, [ document ].concat(e))));
   }
   function k(t) {
-    return "object" == typeof t && !Array.isArray(t) && null !== t;
+    return t && "object" == typeof t && null !== t && !Array.isArray(t);
   }
   function x(t, e) {
-    var n = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : {}, r = void 0 === n.mergeObject || !!n.mergeObject;
+    var n = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : {}, r = void 0 === n.mergeObjects || !!n.mergeObjects;
     if (k(t) && k(e)) for (var i = 0, a = Object.keys(e); i < a.length; i++) {
-      var o = a[i];
-      if (r && k(e[o])) t[o] && k(t[o]) || (t[o] = e[o]), x(t[o], e[o]); else if (n.mergeArray && Array.isArray(e[o])) {
-        var s;
-        if (console.log(o), Array.isArray(t[o])) (s = t[o]).push.apply(s, f(e[o])); else Object.assign(t, {
-          [o]: e[o]
-        });
-      } else Object.assign(t, {
-        [o]: e[o]
+      var o, s = a[i];
+      r && k(e[s]) ? (t[s] && k(t[s]) || (t[s] = e[s]), x(t[s], e[s])) : n.mergeArrays && Array.isArray(e[s]) ? (console.log(s), 
+      Array.isArray(t[s]) ? (o = t[s]).push.apply(o, f(e[s])) : Object.assign(t, {
+        [s]: e[s]
+      })) : Object.assign(t, {
+        [s]: e[s]
       });
     }
     return t;
   }
-  function _({animInst: t, clsFrom: // CSSClassAnimations
-  e, clsActive: // string
-  n, clsTo: // string
-  r}, i) {
-    t.els.addClass(e), w([ () => t.els.addClass(n), 10 ], [ () => t.els.removeClass(e), 10 ], [ () => {
-      t.emitter.once("end", (() => {
-        t.els.removeClass(r, n), i && i();
-      })), t.els.addClass(r);
-    }, 10 ]);
-  }
-  const L = class {
+  const _ = class {
     tabs;
     constructor(t) {
       this.tabs = t;
     }
   };
-  function C(t) {
+  function L(t) {
     for (var e = [], n = arguments.length, r = new Array(n > 1 ? n - 1 : 0), i = 1; i < n; i++) r[i - 1] = arguments[i];
     for (var a = 0, o = r; a < o.length; a++) {
       var s = o[a];
@@ -588,21 +576,21 @@ var Tabs = function() {
     }
     return e;
   }
-  function O(t) {
+  function C(t) {
     for (var e = arguments.length, n = new Array(e > 1 ? e - 1 : 0), r = 1; r < e; r++) n[r - 1] = arguments[r];
     for (var i = 0, a = n; i < a.length; i++) {
       var o = a[i];
-      Array.isArray(o) ? O.apply(void 0, [ t ].concat(f(o))) : t.append(o);
+      Array.isArray(o) ? C.apply(void 0, [ t ].concat(f(o))) : t.append(o);
     }
   }
-  function j() {
+  function O() {
     for (var t = arguments.length, e = new Array(t), n = 0; n < t; n++) e[n] = arguments[n];
     var r = e, i = e.shift();
     return i && setTimeout((function() {
-      i(), r.length && j.apply(void 0, r);
+      i(), r.length && O.apply(void 0, r);
     }), 0), this;
   }
-  var T =  function(e) {
+  var j =  function(e) {
     i(a, e);
     var r = l(a);
     function a() {
@@ -621,14 +609,14 @@ var Tabs = function() {
           try {
             for (o.s(); !(i = o.n()).done; ) {
               var s = i.value;
-              t.push.apply(t, f(C.apply(void 0, [ s ].concat(n))));
+              t.push.apply(t, f(L.apply(void 0, [ s ].concat(n))));
             }
           } catch (t) {
             o.e(t);
           } finally {
             o.f();
           }
-        } else t.push.apply(t, f(C.apply(void 0, [ document ].concat(n))));
+        } else t.push.apply(t, f(L.apply(void 0, [ document ].concat(n))));
         return t;
       }
       /**
@@ -641,7 +629,7 @@ var Tabs = function() {
           var s = o[i];
           if ("string" == typeof s) t.push(document.createElement(s)); else if (s instanceof Object) {
             var c = document.createElement(s.tagName || "div");
-            s.content && (Array.isArray(s.content) ? O.apply(void 0, [ c ].concat(f(s.content))) : O(c, s.content)), 
+            s.content && (Array.isArray(s.content) ? C.apply(void 0, [ c ].concat(f(s.content))) : C(c, s.content)), 
             t.push(c);
           }
         }
@@ -674,7 +662,7 @@ var Tabs = function() {
       value: function() {
         for (var t = arguments.length, e = new Array(t), n = 0; n < t; n++) e[n] = arguments[n];
         return this.forEach((function(t) {
-          return O.apply(void 0, [ t ].concat(e));
+          return C.apply(void 0, [ t ].concat(e));
         })), this
         /**
        * Adds a class or classes to all array elements
@@ -798,15 +786,15 @@ var Tabs = function() {
     }, {
       key: "nextTick",
       value: function() {
-        return j.apply(void 0, arguments), this;
+        return O.apply(void 0, arguments), this;
       }
     } ]), a;
   }( u(Array));
-  function S() {
+  function T() {
     for (var t = arguments.length, e = new Array(t), n = 0; n < t; n++) e[n] = arguments[n];
-    return e instanceof T ? e : c(T, f(C.apply(void 0, [ document ].concat(e))));
+    return e instanceof j ? e : c(j, f(L.apply(void 0, [ document ].concat(e))));
   }
-  var I = {
+  var S = {
     animationstart: "__mutationStartListener",
     animationcancel: "__mutationCancelListener",
     animationend: "__mutationEndListener",
@@ -815,11 +803,11 @@ var Tabs = function() {
     transitioncancel: "__mutationCancelListener",
     transitionend: "__mutationEndListener",
     transitionrun: "__mutationRunListener"
-  }, M = Object.keys(I), R =  function() {
+  }, M = Object.keys(S), R =  function() {
     function e(n) {
       var i = this;
       t(this, e), r(this, "els", void 0), r(this, "emitter", void 0), r(this, "allow", void 0), 
-      r(this, "pending", !1), this.emitter = new d(n.on), this.els = Array.isArray(n.el) ? S.apply(void 0, f(n.el)) : S(n.el);
+      r(this, "pending", !1), this.emitter = new d(n.on), this.els = Array.isArray(n.el) ? T.apply(void 0, f(n.el)) : T(n.el);
       var a = n.allow, o = n.disallow;
       a && a.length > 0 ? this.allow = (Array.isArray(a) ? a : [ a ]).filter((function(t) {
         return M.includes(t.toLowerCase());
@@ -832,11 +820,11 @@ var Tabs = function() {
       // } else {
       //   this.allow = events;
       // }
-      Object.keys(I).forEach((function(t) {
-        return i[I[t]] = i[I[t]].bind(i);
+      Object.keys(S).forEach((function(t) {
+        return i[S[t]] = i[S[t]].bind(i);
       })), this.els.forEach((function(t) {
         return i.allow.forEach((function(e) {
-          return t.addEventListener(e, i[I[e]]);
+          return t.addEventListener(e, i[S[e]]);
         }));
       }));
     }
@@ -870,7 +858,7 @@ var Tabs = function() {
       value: function(t) {
         var e = this;
         M.includes(t) && (this.allow.push(t), this.els.forEach((function(n) {
-          return n.addEventListener(t, e[I[t]]);
+          return n.addEventListener(t, e[S[t]]);
         })));
       }
     }, {
@@ -879,7 +867,7 @@ var Tabs = function() {
         var e = this;
         M.includes(t) && this.allow.includes(t) && (this.allow.splice(this.allow.indexOf(t)), 
         this.els.forEach((function(n) {
-          return n.removeEventListener(t, e[I[t]]);
+          return n.removeEventListener(t, e[S[t]]);
         })));
       }
     }, {
@@ -889,7 +877,14 @@ var Tabs = function() {
       }
     } ]), e;
   }();
-  const P = {
+  function P(t, e, n, r, i) {
+    t.els.addClass(e), w([ () => t.els.addClass(n), 10 ], [ () => t.els.removeClass(e), 10 ], [ () => {
+      t.emitter.once("end", (() => {
+        t.els.removeClass(r, n), i && i();
+      })), t.els.addClass(r);
+    }, 10 ]);
+  }
+  const I = {
     animation: [ "start", "cancel", "end", "iteration" ],
     transition: [ "start", "cancel", "end", "run" ]
   }, $ = class {
@@ -901,14 +896,14 @@ var Tabs = function() {
     constructor(t, e) {
       this.tabs = t, this.helper = e.helper, this.config = {
         el: e.el,
-        $el: E(e.el),
+        $el: A(e.el),
         index: e.index,
         current: e.current
       };
       const n = this.tabs.config.mutation;
       n && (this.anim = new R({
         el: this.config.el,
-        allow: P[n].map((t => n + t))
+        allow: I[n].map((t => n + t))
       }));
     }
     change(t, e) {
@@ -919,20 +914,10 @@ var Tabs = function() {
       if (this.tabs.config.isMutable) {
         this.tabs.config.mutation;
         const e = this.config.el;
-        this.pending = !0, t ? _({
-          animInst: this.anim,
-          clsFrom: "x-tab--t-hide-from",
-          clsActive: "x-tab--t-hide-active",
-          clsTo: "x-tab--t-hide-to"
-        }, (() => {
+        this.pending = !0, t ? P(this.anim, "x-tab--t-hide-from", "x-tab--t-hide-active", "x-tab--t-hide-to", (() => {
           e.classList.remove("x-tabs__tab--active"), this.config.current = !1, this.pending = !1, 
           w((() => this.helper.cb && this.helper.cb(this)));
-        })) : (e.classList.add("x-tabs__tab--active"), _({
-          animInst: this.anim,
-          clsFrom: "x-tab--t-show-from",
-          clsActive: "x-tab--t-show-active",
-          clsTo: "x-tab--t-show-to"
-        }, (() => {
+        })) : (e.classList.add("x-tabs__tab--active"), P(this.anim, "x-tab--t-show-from", "x-tab--t-show-active", "x-tab--t-show-to", (() => {
           this.config.current = !0, this.pending = !1, w((() => this.helper.cb && this.helper.cb(this)));
         })));
       } else this.config.current = !t, this.config.$el[(t ? "remove" : "add") + "Class"](n.tabs.active), 
@@ -944,7 +929,7 @@ var Tabs = function() {
     show(t) {
       this.change(!1, t);
     }
-  }, F = {
+  }, q = {
     transition: "x-tabs--transition",
     animation: "x-tabs--animation",
     tabs: {
@@ -976,7 +961,7 @@ var Tabs = function() {
         }
       }
     }
-  }, q = class {
+  }, B = class {
     static instances=[];
     config;
     emitter;
@@ -986,17 +971,17 @@ var Tabs = function() {
     constructor(t) {
       this.emitter = new d(t.on), this.config = {
         el: t.el,
-        $el: E(t.el),
+        $el: A(t.el),
         mutation: t.mutation || !1,
         isMutable: !!t.mutation,
         current: 0,
         pendingTab: void 0,
-        classes: t.classes ? x(F, t.classes) : F
+        classes: t.classes ? x(q, t.classes) : q
       }, this.helper = new class {
         cb;
       }, this.config.isMutable && this.config.el.classList.add("x-tabs--" + this.config.mutation);
       const e = this.config.$el.get(".x-tabs__tabs");
-      let n, r = e.get(".x-tabs__tab"), i = E();
+      let n, r = e.get(".x-tabs__tab"), i = A();
       for (const t of r) t.parentElement === e[0] && i.push(t);
       for (let t = 0, e = i.length; t < e; t++) i[t].classList.contains("x-tabs__tab--active") && (n = t);
       for (let t = 0, e = i.length; t < e; t++) {
@@ -1008,8 +993,7 @@ var Tabs = function() {
         });
         this.tabs.push(r);
       }
-      if (this.config.current = n || 0, q.instances.push(this), t.plugins && Array.isArray(t.plugins)) for (const e of t.plugins) e instanceof L ? this.plugins.push(new e(this)) : (a = e) && "object" == typeof a && null !== a && this.plugins.push(new e.ctor(this, e.config));
-      var a;
+      if (this.config.current = n || 0, B.instances.push(this), t.plugins && Array.isArray(t.plugins)) for (const e of t.plugins) e instanceof _ ? this.plugins.push(new e(this)) : k(e) && this.plugins.push(new e.ctor(this, e.config));
       this.emitter.emit("init", this, this.config.current);
     }
     goTo(t, e) {
@@ -1047,6 +1031,6 @@ var Tabs = function() {
       return this.goTo(this.config.current + 1);
     }
   };
-  return q;
+  return B;
 }();
 //# sourceMappingURL=tabs.js.map

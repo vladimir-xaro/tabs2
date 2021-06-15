@@ -2,14 +2,18 @@ import EventEmitter from "@xaro/event-emitter";
 
 import _, { nextTick } from "@xaro/micro-dom";
 
-import deepmerge from "@xaro/deepmerge";
+import { merge, isObject } from "@xaro/helpers";
 
 import CSSClassAnimations from "@xaro/css-class-animations";
 
-function animate({animInst: animInst, clsFrom: // CSSClassAnimations
-clsFrom, clsActive: // string
-clsActive, clsTo: // string
-clsTo}, afterEnd) {
+const Plugin = class {
+  tabs;
+  constructor(tabs) {
+    this.tabs = tabs;
+  }
+};
+
+function animate(animInst, clsFrom, clsActive, clsTo, afterEnd) {
   animInst.els.addClass(clsFrom), nextTick([ () => animInst.els.addClass(clsActive), 10 ], [ () => animInst.els.removeClass(clsFrom), 10 ], [ () => {
     animInst.emitter.once("end", (() => {
       animInst.els.removeClass(clsTo, clsActive), afterEnd && afterEnd();
@@ -17,12 +21,7 @@ clsTo}, afterEnd) {
   }, 10 ]);
 }
 
-const Plugin = class {
-  tabs;
-  constructor(tabs) {
-    this.tabs = tabs;
-  }
-}, animEventsPostfix = {
+const animEventsPostfix = {
   animation: [ "start", "cancel", "end", "iteration" ],
   transition: [ "start", "cancel", "end", "run" ]
 }, Tab = class {
@@ -52,20 +51,10 @@ const Plugin = class {
     if (this.tabs.config.isMutable) {
       this.tabs.config.mutation;
       const el = this.config.el;
-      this.pending = !0, hide ? animate({
-        animInst: this.anim,
-        clsFrom: "x-tab--t-hide-from",
-        clsActive: "x-tab--t-hide-active",
-        clsTo: "x-tab--t-hide-to"
-      }, (() => {
+      this.pending = !0, hide ? animate(this.anim, "x-tab--t-hide-from", "x-tab--t-hide-active", "x-tab--t-hide-to", (() => {
         el.classList.remove("x-tabs__tab--active"), this.config.current = !1, this.pending = !1, 
         nextTick((() => this.helper.cb && this.helper.cb(this)));
-      })) : (el.classList.add("x-tabs__tab--active"), animate({
-        animInst: this.anim,
-        clsFrom: "x-tab--t-show-from",
-        clsActive: "x-tab--t-show-active",
-        clsTo: "x-tab--t-show-to"
-      }, (() => {
+      })) : (el.classList.add("x-tabs__tab--active"), animate(this.anim, "x-tab--t-show-from", "x-tab--t-show-active", "x-tab--t-show-to", (() => {
         this.config.current = !0, this.pending = !1, nextTick((() => this.helper.cb && this.helper.cb(this)));
       })));
     } else this.config.current = !hide, this.config.$el[(hide ? "remove" : "add") + "Class"](cls.tabs.active), 
@@ -124,7 +113,7 @@ const Plugin = class {
       isMutable: !!config.mutation,
       current: 0,
       pendingTab: void 0,
-      classes: config.classes ? deepmerge(defaultClasses, config.classes) : defaultClasses
+      classes: config.classes ? merge(defaultClasses, config.classes) : defaultClasses
     }, this.helper = new class {
       cb;
     }, this.config.isMutable && this.config.el.classList.add("x-tabs--" + this.config.mutation);
@@ -141,8 +130,7 @@ const Plugin = class {
       });
       this.tabs.push(tab);
     }
-    if (this.config.current = currentIndex || 0, Tabs.instances.push(this), config.plugins && Array.isArray(config.plugins)) for (const plugin of config.plugins) plugin instanceof Plugin ? this.plugins.push(new plugin(this)) : (el = plugin) && "object" == typeof el && null !== el && this.plugins.push(new plugin.ctor(this, plugin.config));
-    var el;
+    if (this.config.current = currentIndex || 0, Tabs.instances.push(this), config.plugins && Array.isArray(config.plugins)) for (const plugin of config.plugins) plugin instanceof Plugin ? this.plugins.push(new plugin(this)) : isObject(plugin) && this.plugins.push(new plugin.ctor(this, plugin.config));
     this.emitter.emit("init", this, this.config.current);
   }
   goTo(index, config) {

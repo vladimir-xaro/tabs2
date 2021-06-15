@@ -40,23 +40,23 @@ const NavigationItem: I_NavigationItemCtor = class implements I_NavigationItem {
   }
 
   click() {
-    animate({
-      animInst:   this.anim,
-      clsFrom:    'x-nav--t-activate-from',
-      clsActive:  'x-nav--t-activate-active',
-      clsTo:      'x-nav--t-activate-to'
-    });
+    animate(
+      this.anim,
+      'x-nav--t-activate-from',
+      'x-nav--t-activate-active',
+      'x-nav--t-activate-to'
+    );
 
     (this.plugin as unknown as I_Plugin).tabs.goTo(this.config.index);
   }
 
   activate() {
-    animate({
-      animInst:   this.anim,
-      clsFrom:    'x-nav--t-activate-from',
-      clsActive:  'x-nav--t-activate-active',
-      clsTo:      'x-nav--t-activate-to'
-    });
+    animate(
+      this.anim,
+      'x-nav--t-activate-from',
+      'x-nav--t-activate-active',
+      'x-nav--t-activate-to'
+    );
   }
 
   deactivate() {
